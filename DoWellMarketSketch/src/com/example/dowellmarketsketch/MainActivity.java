@@ -11,6 +11,9 @@ import android.support.v4.view.ViewPager;
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.ActionBar.Tab;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuItem;
+import com.actionbarsherlock.view.SubMenu;
 
 public class MainActivity extends SherlockFragmentActivity {
 	private ViewPager mViewPager;
@@ -22,6 +25,31 @@ public class MainActivity extends SherlockFragmentActivity {
 		//setContentView(R.layout.activity_main);
 		
 		init();
+	}
+	
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+	    // Collapsible Action Item
+		menu.add("Search").setIcon(android.R.drawable.ic_menu_search)
+		                  .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+		
+		menu.add("New").setIcon(android.R.drawable.ic_menu_add)
+        .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+
+
+	    // OverFlow menu in actionbar.
+	   /* SubMenu submenu = menu.addSubMenu("");
+	    submenu.setIcon( R.drawable.abs__ic_menu_moreoverflow_normal_holo_dark);
+
+	    submenu.add(1, 0, 1, "Cut");
+	    submenu.add(1, 1, 2, "Copy");
+	    submenu.add(1, 2, 3, "Paste");
+	    submenu.getItem(). setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS|
+	                         MenuItem.SHOW_AS_ACTION_WITH_TEXT);
+	    // end overflow menu
+*/
+	   return true;
 	}
 	
 	 /**
