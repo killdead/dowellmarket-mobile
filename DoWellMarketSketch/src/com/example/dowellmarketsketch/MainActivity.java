@@ -6,24 +6,41 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.ListFragment;
 import android.support.v4.view.ViewPager;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.ActionBar.Tab;
-import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 
-public class MainActivity extends SherlockFragmentActivity {
+import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
+
+public class MainActivity extends SlidingFragmentActivity {
 	private ViewPager mViewPager;
 	private ActionBar mSupportActionBar;
+	protected ListFragment mFrag;
 	
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		//setContentView(R.layout.activity_main);
 		
 		init();
+		
+		setBehindContentView(R.layout.menu_frame);
+        getSlidingMenu().setBehindOffset(100);
+        setSlidingActionBarEnabled(true);
+		if (savedInstanceState == null) {
+			FragmentTransaction t = this.getSupportFragmentManager().beginTransaction();
+			mFrag = new MenuLeftListFragment();
+			t.replace(R.id.menu_frame, mFrag);
+			t.commit();
+		} else {
+			mFrag = (ListFragment)this.getSupportFragmentManager().findFragmentById(R.id.menu_frame);
+		}
+
+ 
 	}
 	
 	
@@ -60,7 +77,7 @@ public class MainActivity extends SherlockFragmentActivity {
         mViewPager = new ViewPager(this);
         mViewPager.setId(1232);
         setContentView(mViewPager);
-        
+      
         //  Init and set ActionBar Properties.
         mSupportActionBar = getSupportActionBar();
         mSupportActionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
@@ -85,6 +102,8 @@ public class MainActivity extends SherlockFragmentActivity {
         adapter.setBundle(bundleAL);
         mViewPager.setAdapter(adapter);
         mViewPager.setOnPageChangeListener(adapter);
+        
+               getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
     
     /**
