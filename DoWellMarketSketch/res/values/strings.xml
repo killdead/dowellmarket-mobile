@@ -4,5 +4,6 @@
     <string name="app_name">DoWellMarketSketch</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+    <string name="side_menu_txt">Menu texte</string>
 
 </resources>

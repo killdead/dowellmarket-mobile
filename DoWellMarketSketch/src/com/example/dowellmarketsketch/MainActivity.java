@@ -26,52 +26,35 @@ public class MainActivity extends SlidingFragmentActivity {
 		super.onCreate(savedInstanceState);
 		//setContentView(R.layout.activity_main);
 		
-		init();
+		initTabsPager();
 		
-		setBehindContentView(R.layout.menu_frame);
-        getSlidingMenu().setBehindOffset(100);
-        setSlidingActionBarEnabled(true);
-		if (savedInstanceState == null) {
-			FragmentTransaction t = this.getSupportFragmentManager().beginTransaction();
-			mFrag = new MenuLeftListFragment();
-			t.replace(R.id.menu_frame, mFrag);
-			t.commit();
-		} else {
-			mFrag = (ListFragment)this.getSupportFragmentManager().findFragmentById(R.id.menu_frame);
-		}
+		initSideLeftMenu(savedInstanceState);
 
  
 	}
 	
 	
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-	    // Collapsible Action Item
-		menu.add("Search").setIcon(android.R.drawable.ic_menu_search)
-		                  .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+	private void initSideLeftMenu(Bundle savedInstanceState) {
+		setBehindContentView(R.layout.left_side_menu);
+        getSlidingMenu().setBehindOffset(100);
+        setSlidingActionBarEnabled(true);
+		if (savedInstanceState == null) {
+			FragmentTransaction t = this.getSupportFragmentManager().beginTransaction();
+			mFrag = new SideMenuListFragment();
+			t.replace(R.id.left_side_menu, mFrag);
+			t.commit();
+		} else {
+			 mFrag = (ListFragment)this.getSupportFragmentManager().findFragmentById(R.id.left_side_menu);
+		}
 		
-		menu.add("New").setIcon(android.R.drawable.ic_menu_add)
-        .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-
-
-	    // OverFlow menu in actionbar.
-	   /* SubMenu submenu = menu.addSubMenu("");
-	    submenu.setIcon( R.drawable.abs__ic_menu_moreoverflow_normal_holo_dark);
-
-	    submenu.add(1, 0, 1, "Cut");
-	    submenu.add(1, 1, 2, "Copy");
-	    submenu.add(1, 2, 3, "Paste");
-	    submenu.getItem(). setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS|
-	                         MenuItem.SHOW_AS_ACTION_WITH_TEXT);
-	    // end overflow menu
-*/
-	   return true;
 	}
+
+
 	
 	 /**
      * Initialises the Views and variables for this activity.
      */
-    private void init() {
+    private void initTabsPager() {
         
         //  Initialise and set viewpager to the activity.
         mViewPager = new ViewPager(this);
@@ -108,9 +91,6 @@ public class MainActivity extends SlidingFragmentActivity {
     
     /**
      * Adapter for setting the content for the tab click's.
-     * 
-     * @author shpolavarapu
-     * 
      */
     private class SherlockTabAdapter extends FragmentPagerAdapter implements ActionBar.TabListener,
             ViewPager.OnPageChangeListener {
@@ -173,4 +153,27 @@ public class MainActivity extends SlidingFragmentActivity {
     }
 
 
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+	    // Collapsible Action Item
+		menu.add("Search").setIcon(android.R.drawable.ic_menu_search)
+		                  .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+		
+		menu.add("New").setIcon(android.R.drawable.ic_menu_add)
+        .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+
+
+	    // OverFlow menu in actionbar.
+	   /* SubMenu submenu = menu.addSubMenu("");
+	    submenu.setIcon( R.drawable.abs__ic_menu_moreoverflow_normal_holo_dark);
+
+	    submenu.add(1, 0, 1, "Cut");
+	    submenu.add(1, 1, 2, "Copy");
+	    submenu.add(1, 2, 3, "Paste");
+	    submenu.getItem(). setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS|
+	                         MenuItem.SHOW_AS_ACTION_WITH_TEXT);
+	    // end overflow menu
+*/
+	   return true;
+	}
 }
