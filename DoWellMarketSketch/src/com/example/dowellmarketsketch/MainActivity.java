@@ -2,22 +2,17 @@ package com.example.dowellmarketsketch;
 
 import java.util.ArrayList;
 
-import android.app.ProgressDialog;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.ListFragment;
 import android.support.v4.view.ViewPager;
-import android.widget.Toast;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.ActionBar.Tab;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
-import com.example.dowellmarketsketch.model.WebServiceStandardResponse;
-import com.example.dowellmarketsketch.webservice.UserWebService;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
 
 public class MainActivity extends SlidingFragmentActivity {
@@ -33,7 +28,7 @@ public class MainActivity extends SlidingFragmentActivity {
 		initTabsPager();
 		
 		initSideLeftMenu(savedInstanceState);
-		 TestConnect();		
+		
  
 	}
 	
@@ -183,58 +178,7 @@ public class MainActivity extends SlidingFragmentActivity {
 	}
 	
 	
-	public void TestConnect() {
-		new AsyncTask<Void, Void, WebServiceStandardResponse>() {
-			
-			final ProgressDialog dialog = new ProgressDialog(MainActivity.this);
-	    	//Context mcontext;
-	    	
-			
-			@Override
-			protected void onPreExecute() {
-				super.onPreExecute();
-				dialog.setMessage("Test webservice ...");
-			    dialog.show();
-			}
-
-			@Override
-			protected WebServiceStandardResponse doInBackground(Void... params) {
-				UserWebService webService = new UserWebService();
-
-				WebServiceStandardResponse response = webService.Connect("admin", "adminadmin");
-
-				if (response != null) {
-					return response;
-				}
-
-				return new WebServiceStandardResponse();
-			}
-
-			protected void onPostExecute(WebServiceStandardResponse result) {
-             
-				if(result.status==0) {
-				
-					 //finish();
-					 
-					//dialog.setMessage("Connexion OK, token= : "+result.result);
-				dialog.dismiss();
-					 
-				Toast.makeText(MainActivity.this,"Connexion OK, token : "+ result.result,  Toast.LENGTH_LONG).show();
-				}
-				else {
-					 
-					dialog.setMessage("Erreur de connexion : "+result.message);
-					//Toast.makeText(MainActivity.this, result.message,  Toast.LENGTH_LONG).show();
-					
-					//dialog.dismiss();
-				}
-				
-					
-				}
-				
-			}.execute();
-
-		}
+	
 	}
 	
 	

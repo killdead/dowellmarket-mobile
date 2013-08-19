@@ -29,8 +29,8 @@ public WebServiceStandardResponse Connect(String username, String password) {
 		// Envoie de la requête
 				
 	    List<NameValuePair> params = new ArrayList<NameValuePair>();
-	    params.add(new BasicNameValuePair("username","admin"));
-	    params.add(new BasicNameValuePair("password","adminadmin"));
+	    params.add(new BasicNameValuePair("username",username));
+	    params.add(new BasicNameValuePair("password",password));
 	    		
 		inputStream = Post(UrlAuthenticate,params);
 		
