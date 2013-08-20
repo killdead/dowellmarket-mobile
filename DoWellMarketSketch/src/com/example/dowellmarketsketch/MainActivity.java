@@ -2,6 +2,8 @@ package com.example.dowellmarketsketch;
 
 import java.util.ArrayList;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -16,6 +18,7 @@ import com.actionbarsherlock.view.MenuItem;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
 
 public class MainActivity extends SlidingFragmentActivity {
+	public static final String PREFS_NAME = "LoginPrefs";
 	private ViewPager mViewPager;
 	private ActionBar mSupportActionBar;
 	protected ListFragment mFrag;
@@ -24,6 +27,14 @@ public class MainActivity extends SlidingFragmentActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		//setContentView(R.layout.activity_main);
+		
+		 SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+			if (!settings.getString("logged", "").toString().equals("logged")) {
+				Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+				intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				startActivity(intent);
+				finish();
+			}
 		
 		initTabsPager();
 		

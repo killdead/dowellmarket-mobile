@@ -25,6 +25,10 @@ public UserWebService() {
 public WebServiceStandardResponse Connect(String username, String password) {
 	WebServiceStandardResponse r = null;
 	String inputStream = null;
+	
+	if(!isAvailable())
+	  return r;
+	
 	try {
 		// Envoie de la requête
 				
