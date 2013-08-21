@@ -797,10 +797,11 @@ containing a value of this type.
         public static final int abs__bright_foreground_disabled_holo_light=0x7f060005;
         public static final int abs__bright_foreground_holo_dark=0x7f060002;
         public static final int abs__bright_foreground_holo_light=0x7f060003;
-        public static final int abs__primary_text_disable_only_holo_dark=0x7f060006;
-        public static final int abs__primary_text_disable_only_holo_light=0x7f060007;
-        public static final int abs__primary_text_holo_dark=0x7f060008;
-        public static final int abs__primary_text_holo_light=0x7f060009;
+        public static final int abs__primary_text_disable_only_holo_dark=0x7f060007;
+        public static final int abs__primary_text_disable_only_holo_light=0x7f060008;
+        public static final int abs__primary_text_holo_dark=0x7f060009;
+        public static final int abs__primary_text_holo_light=0x7f06000a;
+        public static final int white=0x7f060006;
     }
     public static final class dimen {
         /**  Default height of an action bar. 
@@ -1024,7 +1025,8 @@ containing a value of this type.
         public static final int abs__textfield_searchview_right_holo_dark=0x7f02006d;
         public static final int abs__textfield_searchview_right_holo_light=0x7f02006e;
         public static final int abs__toast_frame=0x7f02006f;
-        public static final int ic_launcher=0x7f020070;
+        public static final int dwm_logo=0x7f020070;
+        public static final int ic_launcher=0x7f020071;
     }
     public static final class id {
         public static final int abs__action_bar=0x7f040025;
@@ -1066,12 +1068,13 @@ containing a value of this type.
         public static final int abs__textButton=0x7f040018;
         public static final int abs__title=0x7f040020;
         public static final int abs__up=0x7f04000b;
-        public static final int action_settings=0x7f040041;
+        public static final int action_settings=0x7f040043;
         public static final int disableHome=0x7f040009;
         public static final int edit_query=0x7f04002b;
         public static final int fragment_txt=0x7f040037;
         public static final int fullscreen=0x7f040013;
         public static final int homeAsUp=0x7f040006;
+        public static final int imageView1=0x7f040042;
         public static final int left=0x7f040010;
         public static final int left_side_menu=0x7f040038;
         public static final int listMode=0x7f040002;
@@ -1090,6 +1093,7 @@ containing a value of this type.
         public static final int showTitle=0x7f040007;
         public static final int side_menu_item_tag=0x7f04003f;
         public static final int slidingmenumain=0x7f040040;
+        public static final int splash=0x7f040041;
         public static final int tabMode=0x7f040003;
         public static final int useLogo=0x7f040004;
         public static final int wrap_content=0x7f040000;
@@ -1131,6 +1135,7 @@ containing a value of this type.
         public static final int sherlock_spinner_item=0x7f03001d;
         public static final int side_menu_item=0x7f03001e;
         public static final int slidingmenumain=0x7f03001f;
+        public static final int splash=0x7f030020;
     }
     public static final class menu {
         public static final int main=0x7f0b0000;
