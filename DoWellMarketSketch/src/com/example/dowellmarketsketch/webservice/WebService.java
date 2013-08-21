@@ -7,44 +7,57 @@ import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.NameValuePair;
+import org.apache.http.auth.AuthScope;
+import org.apache.http.auth.AuthState;
+import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.protocol.ClientContext;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
+import org.apache.http.protocol.BasicHttpContext;
+import org.apache.http.protocol.HttpContext;
 import org.apache.http.util.EntityUtils;
 
 import android.util.Log;
 
 import com.google.gson.Gson;
-public class WebService {
+public abstract class WebService {
 
 	
     protected Gson gson;
-    public static final String WebServiceBaseUrl = "http://192.168.0.12/elgg";
-	
-    private DefaultHttpClient client = null; 
+    public static final String WebServiceBaseUrl = "http://dev.dowellmarket.com";
+  //  public static final String WebServiceBaseUrl = "http://192.168.0.12/elgg";
+    public static final boolean DistantSite  = true;
+    private static DefaultHttpClient client = new DefaultHttpClient(); 
     
 
 	public WebService() {
 		gson = new Gson();
 	}
 	
-	public boolean isAvailable()
+	boolean isAvailable()
 	{
-		 HttpGet getRequest = new HttpGet(WebServiceBaseUrl);
+		 final HttpGet getRequest = new HttpGet(WebServiceBaseUrl);
 		 final HttpParams httpParams = new BasicHttpParams();
-		    HttpConnectionParams.setConnectionTimeout(httpParams, 2000);
-		    client = new DefaultHttpClient(httpParams);
+		 HttpConnectionParams.setConnectionTimeout(httpParams, 2000);
+		    
+		client = new DefaultHttpClient(httpParams);
+		 if(DistantSite) {
+			 client.getCredentialsProvider().setCredentials(new AuthScope(null, -1),
+					 new UsernamePasswordCredentials("admin","iverson"));
+
+		 }
 		    boolean result = true;
 		    
 	      try {
 	         
 	    	 
 	         HttpResponse getResponse = client.execute(getRequest);	
-	         
+	        
 	         final int statusCode = getResponse.getStatusLine().getStatusCode();
 
 	         
@@ -64,13 +77,21 @@ public class WebService {
 	      return result;
 	}
 	
-	   public String Get(String url) {
+	
+	   String GetService(String url) {
 	       
-	        HttpGet getRequest = new HttpGet(url);
+	        HttpGet getRequest = new HttpGet(WebServiceBaseUrl+url);
 	        
 	      try {
 	         
-	    	 client = new DefaultHttpClient();
+	    //	 client = new DefaultHttpClient();
+	    	  if(DistantSite) {
+	    		  client.getCredentialsProvider().setCredentials(new AuthScope(null, -1),
+	 					 new UsernamePasswordCredentials("admin","iverson"));
+
+	 		 }
+	    	  
+	    	  
 	         HttpResponse getResponse = client.execute(getRequest);	
 	         final int statusCode = getResponse.getStatusLine().getStatusCode();
 
@@ -83,6 +104,7 @@ public class WebService {
 	         HttpEntity getResponseEntity = getResponse.getEntity();
 	
 	         if (getResponseEntity != null) {
+	        	 
 	            return EntityUtils.toString(getResponseEntity);	
 	         }
 
@@ -98,15 +120,21 @@ public class WebService {
 	   }
 	   
 
-	   public String Post(String url,List<NameValuePair> params) {
+	   String PostService(String url,List<NameValuePair> params) {
 	       
-	        HttpPost getRequest = new HttpPost(url);
+	        HttpPost getRequest = new HttpPost(WebServiceBaseUrl+url);
 	        
 	        
 	      try {
 	         
 	    	  getRequest.setEntity(new UrlEncodedFormEntity(params));
-	    	  client = new DefaultHttpClient();
+	    	   
+	    	  if(DistantSite) {
+	    		  client.getCredentialsProvider().setCredentials(new AuthScope(null, -1),
+	 					 new UsernamePasswordCredentials("admin","iverson"));
+
+	 		 }
+	    	  
 	         HttpResponse getResponse = client.execute(getRequest);	
 	         final int statusCode = getResponse.getStatusLine().getStatusCode();
 
