@@ -1,8 +1,5 @@
 package com.example.dowellmarketsketch;
 
-import com.example.dowellmarketsketch.model.WebServiceStandardResponse;
-import com.example.dowellmarketsketch.webservice.UserWebService;
-
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -11,10 +8,11 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.example.dowellmarketsketch.model.WebServiceStandardResponse;
+import com.example.dowellmarketsketch.webservice.UserWebService;
 
 public class LoginActivity extends Activity {
 	public static final String PREFS_NAME = "LoginPrefs";
@@ -27,28 +25,10 @@ public class LoginActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
-        
-        /*
-         * Check if we successfully logged in before. 
-         * If we did, redirect to home page
-         */
-    /*    SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
-		if (settings.getString("logged", "").toString().equals("logged")) {
-			Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-			startActivity(intent);
-		}*/
-		
-        Button b = (Button) findViewById(R.id.loginbutton);
-		b.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				AttemptLogin() ;
-				}
-			
-		});
+       
     }
     
-    public void AttemptLogin() {
+    public void AttemptLogin(View v) {
     	loginEditText = (EditText) findViewById(R.id.login);
 		passwordEditText = (EditText) findViewById(R.id.password);
 		

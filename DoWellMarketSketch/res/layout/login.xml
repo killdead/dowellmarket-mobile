@@ -4,34 +4,11 @@
     android:layout_height="wrap_content"
     tools:context=".LoginActivity" >
     
-        <!-- Login progress -->
-    <LinearLayout android:id="@+id/login_status"
-        android:visibility="gone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center_horizontal"
-        android:orientation="vertical">
-        <TextView
-            android:id="@+id/login_status_message"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:fontFamily="sans-serif-light"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:text="@string/login_progress_signing_in" />
-    </LinearLayout>
-     <ScrollView
-        android:id="@+id/login_form"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:weightSum="1" >
-
 
   <EditText
                 android:id="@+id/login"
@@ -55,17 +32,17 @@
                 android:imeActionId="@+id/login"
                 android:imeOptions="actionUnspecified" />
 
-  
-    
-     <Button android:id="@+id/loginbutton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@string/action_sign_in_short"
-                android:paddingLeft="32dp"
-                android:paddingRight="32dp"
-                android:layout_gravity="right" />
+     <Button
+         android:id="@+id/loginbutton"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_gravity="right"
+         android:layout_marginTop="16dp"
+         android:onClick="AttemptLogin"
+         android:paddingLeft="32dp"
+         android:paddingRight="32dp"
+         android:text="@string/action_sign_in_short" />
 
 </LinearLayout>
-</ScrollView>
+
 </merge>
