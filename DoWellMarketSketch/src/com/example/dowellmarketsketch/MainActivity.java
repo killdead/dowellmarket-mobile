@@ -78,16 +78,19 @@ public class MainActivity extends SlidingFragmentActivity {
         //  Initialise Adapter for the view pager.
         SherlockTabAdapter adapter = new SherlockTabAdapter();
         ArrayList<Bundle> bundleAL = new ArrayList<Bundle>();
-        String texts[] = {"Maison", "Appartement", "Porte-feuille", "Autres"};
-        for(int index = 0; index < texts.length; index++)
+        
+        String[] listMenu = getResources().getStringArray(R.array.sidemenu);
+        for(int index = 0; index < listMenu.length; index++)
         {
             //  Prepare Bundle object for each tab.
             Bundle bundle = new Bundle();
-            bundle.putString("text", texts[index]);
+            bundle.putString("text", listMenu[index]);
+            bundle.putInt("pos",index);
+            //bundle.putString("text", listMenu[index]);
             bundleAL.add(bundle);
             
             //  Add tabs for the action bar.
-            ActionBar.Tab tab = mSupportActionBar.newTab().setText(texts[index])
+            ActionBar.Tab tab = mSupportActionBar.newTab().setText(listMenu[index])
                     .setTabListener(adapter);
             mSupportActionBar.addTab(tab);
         }
@@ -152,7 +155,7 @@ public class MainActivity extends SlidingFragmentActivity {
 
         @Override
         public Fragment getItem(int pos) {
-            return Fragment.instantiate(MainActivity.this, Fragment_1.class.getName(), mBundleAL.get(pos));
+            return Fragment.instantiate(MainActivity.this, MainPager.class.getName(), mBundleAL.get(pos));
         }
 
         @Override

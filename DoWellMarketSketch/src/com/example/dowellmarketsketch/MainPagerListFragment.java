@@ -10,7 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class MenuLeftListFragment extends ListFragment {
+public class MainPagerListFragment extends ListFragment {
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		return inflater.inflate(R.layout.list, null);
@@ -20,21 +20,21 @@ public class MenuLeftListFragment extends ListFragment {
 		super.onActivityCreated(savedInstanceState);
 		SampleAdapter adapter = new SampleAdapter(getActivity());
 		for (int i = 0; i < 5; i++) {
-			adapter.add(new MenuLeftItem("Sample List", android.R.drawable.ic_menu_search));
+			adapter.add(new SampleItem("Sample List", android.R.drawable.ic_menu_search));
 		}
 		setListAdapter(adapter);
 	}
 
-	private class MenuLeftItem {
+	private class SampleItem {
 		public String tag;
 		public int iconRes;
-		public MenuLeftItem(String tag, int iconRes) {
+		public SampleItem(String tag, int iconRes) {
 			this.tag = tag; 
 			this.iconRes = iconRes;
 		}
 	}
 
-	public class SampleAdapter extends ArrayAdapter<MenuLeftItem> {
+	public class SampleAdapter extends ArrayAdapter<SampleItem> {
 
 		public SampleAdapter(Context context) {
 			super(context, 0);

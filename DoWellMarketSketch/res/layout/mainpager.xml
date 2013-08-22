@@ -5,10 +5,17 @@
     android:orientation="vertical" >
 
     <TextView
-        android:id="@+id/fragment_txt"
+        android:id="@+id/mainpager_txt"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
         android:text="Fragment 1" />
+    
+    <ListView 
+    android:id="@+id/mainpager_list"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/list_padding"
+    android:paddingRight="@dimen/list_padding" />
 
 </LinearLayout>
