@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="air_conditioning">
+        <item></item>
+        <item>Climatisation</item>
+    </string-array>
+    <string-array name="am_pm_entries">
+        <item>matin</item>
+        <item>soir</item>
+    </string-array>
+    <string-array name="am_pm_values">
+        <item>am</item>
+        <item>pm</item>
+    </string-array>
+    <string-array name="assisted_steering">
+        <item></item>
+        <item>Direction assistée</item>
+    </string-array>
+    <string-array name="audio_input">
+        <item></item>
+        <item>Entrée audio / iPod</item>
+    </string-array>
+    <string-array name="automatic">
+        <item>automatique</item>
+        <item>boite automatique</item>
+    </string-array>
+    <string-array name="baby_seat">
+        <item></item>
+        <item>Siège bébé</item>
+    </string-array>
+    <string-array name="bike_rack">
+        <item></item>
+        <item>Porte-vélos</item>
+    </string-array>
+    <string-array name="car_new_brands">
+        <item>Renault</item>
+        <item>Peugeot</item>
+        <item>Citroën</item>
+        <item>Volkswagen</item>
+        <item>Abarth</item>
+        <item>Alfa-Romeo</item>
+        <item>Alpine-Renault</item>
+        <item>Aston-Martin</item>
+        <item>Audi</item>
+        <item>Austin</item>
+        <item>Bentley</item>
+        <item>Bmw</item>
+        <item>Buick</item>
+        <item>Cadillac</item>
+        <item>Carbordies</item>
+        <item>Caterham</item>
+        <item>Chevrolet</item>
+        <item>Chevrolet-Usa</item>
+        <item>Chrysler</item>
+        <item>Citroën</item>
+        <item>Dacia</item>
+        <item>Daewoo</item>
+        <item>Daihatsu</item>
+        <item>Dodge</item>
+        <item>Ferrari</item>
+        <item>Fiat</item>
+        <item>Ford</item>
+        <item>Ford-Usa</item>
+        <item>Honda</item>
+        <item>Hummer</item>
+        <item>Hyundai</item>
+        <item>Infiniti</item>
+        <item>Isuzu</item>
+        <item>Jaguar</item>
+        <item>Jeep</item>
+        <item>Kia</item>
+        <item>Lada</item>
+        <item>Lamborgini</item>
+        <item>Lancia</item>
+        <item>Land-Rover</item>
+        <item>Lexus</item>
+        <item>Lotus</item>
+        <item>Maserati</item>
+        <item>Mazda</item>
+        <item>Mega</item>
+        <item>Mercedes</item>
+        <item>Mg</item>
+        <item>Mini</item>
+        <item>Mistubishi</item>
+        <item>Morgan</item>
+        <item>Nissan</item>
+        <item>Opel</item>
+        <item>Peugeot</item>
+        <item>Pgo</item>
+        <item>Pontiac</item>
+        <item>Porsche</item>
+        <item>Renault</item>
+        <item>Rolls-Royce</item>
+        <item>Rover</item>
+        <item>Saab</item>
+        <item>Santana</item>
+        <item>SCVE</item>
+        <item>Seat</item>
+        <item>Skoda</item>
+        <item>Smart</item>
+        <item>Ssangyong</item>
+        <item>Subaru</item>
+        <item>Suzuki</item>
+        <item>Talbot</item>
+        <item>Toyota</item>
+        <item>Triumph</item>
+        <item>Venturi</item>
+        <item>Volkswagen</item>
+        <item>Volvo</item>
+    </string-array>
+    <string-array name="car_new_model_example">
+        <item>ex : Twingo ou Citroën AX de 1995</item>
+        <item>ex : Twingo ou Citroën AX de 1998</item>
+        <item>ex : Twingo année 2004, Clio année 2000</item>
+        <item>ex : Twingo année 2007, Clio année 2004</item>
+        <item>ex : Twingo année 2010, Clio année 2007</item>
+        <item>ex : Clio année 2011, Mégane année 2007</item>
+        <item>ex : Mégane année 2010</item>
+        <item>ex : Golf année 2010, Audi A3 année 2006</item>
+        <item>ex : Audi A3 année 2008</item>
+        <item>ex : Audi A3 année 2010</item>
+        <item>ex : Audi A4 année 2010</item>
+        <item>ex : Mercedes Classe C 2010</item>
+    </string-array>
+    <string-array name="cd_player">
+        <item></item>
+        <item>Lecteur CD</item>
+    </string-array>
+    <string-array name="chains">
+        <item></item>
+        <item>Chaines</item>
+    </string-array>
+    <string-array name="countries_entries">
+        <item>Albanie</item>
+        <item>Algérie</item>
+        <item>Allemagne</item>
+        <item>Andorre</item>
+        <item>Arménie</item>
+        <item>Autriche</item>
+        <item>Bahreïn</item>
+        <item>Belarus</item>
+        <item>Belgique</item>
+        <item>Bosnie Herzégovine</item>
+        <item>Bulgarie</item>
+        <item>Burkina Faso</item>
+        <item>Cameroun</item>
+        <item>Chypre</item>
+        <item>Congo</item>
+        <item>"Cote d'Ivoire"</item>
+        <item>Croatie</item>
+        <item>Danemark</item>
+        <item>Espagne</item>
+        <item>Estonie</item>
+        <item>Etat du Vatican</item>
+        <item>Finlande</item>
+        <item>France</item>
+        <item>Gabon</item>
+        <item>Ghana</item>
+        <item>Gibraltar</item>
+        <item>Grèce</item>
+        <item>Guinée</item>
+        <item>Guinée Bissau</item>
+        <item>Guinée Equatoriale</item>
+        <item>Guyana</item>
+        <item>Hongrie</item>
+        <item>Irlande</item>
+        <item>Islande</item>
+        <item>Italie</item>
+        <item>Kenya</item>
+        <item>Lettonie</item>
+        <item>Liechtenstein</item>
+        <item>Lituanie</item>
+        <item>Luxembourg</item>
+        <item>Malte</item>
+        <item>Maroc</item>
+        <item>Maurice</item>
+        <item>Micronésie</item>
+        <item>Monaco</item>
+        <item>Norvège</item>
+        <item>Papouasie Nouvelle Guinée</item>
+        <item>Pays Bas</item>
+        <item>Pologne</item>
+        <item>Portugal</item>
+        <item>République du Congo</item>
+        <item>République Tchèque</item>
+        <item>Roumanie</item>
+        <item>Royaume Uni</item>
+        <item>Russie</item>
+        <item>Saint Marin</item>
+        <item>Sainte Helene</item>
+        <item>Seychelles</item>
+        <item>Singapour</item>
+        <item>Slovaquie</item>
+        <item>Slovénie</item>
+        <item>St Christophe et Nieves</item>
+        <item>St Vincent et Grenadine</item>
+        <item>Suède</item>
+        <item>Suisse</item>
+        <item>Swaziland</item>
+        <item>Tunisie</item>
+        <item>Turquie</item>
+        <item>Ukraine</item>
+        <item>Yougoslavie</item>
+    </string-array>
+    <string-array name="countries_values">
+        <item>AL</item>
+        <item>DZ</item>
+        <item>DE</item>
+        <item>AD</item>
+        <item>AM</item>
+        <item>AT</item>
+        <item>BH</item>
+        <item>BY</item>
+        <item>BE</item>
+        <item>BA</item>
+        <item>BG</item>
+        <item>BF</item>
+        <item>CM</item>
+        <item>CY</item>
+        <item>CG</item>
+        <item>CI</item>
+        <item>HR</item>
+        <item>DK</item>
+        <item>ES</item>
+        <item>EE</item>
+        <item>VA</item>
+        <item>FI</item>
+        <item>FR</item>
+        <item>GA</item>
+        <item>GH</item>
+        <item>GI</item>
+        <item>GR</item>
+        <item>GN</item>
+        <item>GW</item>
+        <item>GQ</item>
+        <item>GY</item>
+        <item>HU</item>
+        <item>IE</item>
+        <item>IS</item>
+        <item>IT</item>
+        <item>KE</item>
+        <item>LV</item>
+        <item>LI</item>
+        <item>LT</item>
+        <item>LU</item>
+        <item>MT</item>
+        <item>MA</item>
+        <item>MU</item>
+        <item>FM</item>
+        <item>MC</item>
+        <item>NO</item>
+        <item>PG</item>
+        <item>NL</item>
+        <item>PL</item>
+        <item>PT</item>
+        <item>CD</item>
+        <item>CZ</item>
+        <item>RO</item>
+        <item>GB</item>
+        <item>RU</item>
+        <item>SM</item>
+        <item>SH</item>
+        <item>SC</item>
+        <item>SG</item>
+        <item>SK</item>
+        <item>SI</item>
+        <item>KN</item>
+        <item>VC</item>
+        <item>SE</item>
+        <item>CH</item>
+        <item>SZ</item>
+        <item>TN</item>
+        <item>TR</item>
+        <item>UA</item>
+        <item>MK</item>
+    </string-array>
+    <string-array name="cruise_control">
+        <item></item>
+        <item>Régulateur de vitesse</item>
+    </string-array>
+    <string-array name="diesel">
+        <item>Diesel</item>
+        <item>Diesel</item>
+        <item>Diesel</item>
+    </string-array>
+    <string-array name="electric">
+        <item>Elec.</item>
+        <item>Electrique</item>
+        <item>Electrique</item>
+    </string-array>
+    <string-array name="gpl">
+        <item>GPL</item>
+        <item>GPL</item>
+        <item>GPL</item>
+    </string-array>
+    <string-array name="gps">
+        <item></item>
+        <item>GPS</item>
+    </string-array>
+    <string-array name="hybrid">
+        <item>Hybr.</item>
+        <item>Hybride</item>
+        <item>Hybride</item>
+    </string-array>
+    <string-array name="m0">
+        <item>–15.000km</item>
+        <item>0–15.000km</item>
+    </string-array>
+    <string-array name="m100_000">
+        <item>+100.000km</item>
+        <item>100–150.000km</item>
+    </string-array>
+    <string-array name="m150_000">
+        <item>+150.000km</item>
+        <item>150–200.000km</item>
+    </string-array>
+    <string-array name="m15_000">
+        <item>+15.000km</item>
+        <item>15–30.000km</item>
+    </string-array>
+    <string-array name="m200_000">
+        <item>+200.000km</item>
+        <item>+200.000km</item>
+    </string-array>
+    <string-array name="m30_000">
+        <item>+30.000km</item>
+        <item>30–50.000km</item>
+    </string-array>
+    <string-array name="m50_000">
+        <item>+50.000km</item>
+        <item>50–75.000km</item>
+    </string-array>
+    <string-array name="m75_000">
+        <item>+75.000km</item>
+        <item>75–100.000km</item>
+    </string-array>
+    <string-array name="manual">
+        <item>manuelle</item>
+        <item>boite manuelle</item>
+    </string-array>
+    <string-array name="mileage_entries">
+        <item>20km</item>
+        <item>50km</item>
+        <item>100km</item>
+        <item>200km</item>
+        <item>300km</item>
+        <item>400km</item>
+        <item>500km</item>
+        <item>600km</item>
+        <item>700km</item>
+        <item>800km</item>
+        <item>900km</item>
+        <item>1000km</item>
+        <item>1500km</item>
+        <item>2000km</item>
+        <item>2500km</item>
+        <item>3000km</item>
+        <item>3500km</item>
+        <item>4000km</item>
+        <item>4500km</item>
+        <item>5000km</item>
+    </string-array>
+    <string-array name="mileage_values">
+        <item>20</item>
+        <item>50</item>
+        <item>100</item>
+        <item>200</item>
+        <item>300</item>
+        <item>400</item>
+        <item>500</item>
+        <item>600</item>
+        <item>700</item>
+        <item>800</item>
+        <item>900</item>
+        <item>1000</item>
+        <item>1500</item>
+        <item>2000</item>
+        <item>2500</item>
+        <item>3000</item>
+        <item>3500</item>
+        <item>4000</item>
+        <item>4500</item>
+        <item>5000</item>
+    </string-array>
+    <string-array name="other">
+        <item></item>
+        <item>Autre</item>
+        <item>Autre</item>
+    </string-array>
+    <string-array name="photos_choice">
+        <item>Prendre une photo</item>
+        <item>Choisir dans la bibliothèque</item>
+    </string-array>
+    <string-array name="roof_box">
+        <item></item>
+        <item>Coffre de toit</item>
+    </string-array>
+    <string-array name="sequential">
+        <item>séquentielle</item>
+        <item>boite séquentielle</item>
+    </string-array>
+    <string-array name="ski_rack">
+        <item></item>
+        <item>Porte-skis</item>
+    </string-array>
+    <string-array name="snow_tire">
+        <item></item>
+        <item>Pneus neige</item>
+    </string-array>
+    <string-array name="sp95">
+        <item>Ess.</item>
+        <item>Essence</item>
+        <item>Essence SP95</item>
+    </string-array>
+    <string-array name="sp98">
+        <item>Ess.</item>
+        <item>Essence</item>
+        <item>Essence SP98</item>
+    </string-array>
+</resources>

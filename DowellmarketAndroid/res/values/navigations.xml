@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <string name="navigation_drawer_accessibility_close">Fermé</string>
+    <string name="navigation_drawer_accessibility_open">Ouvert</string>
+    <string name="navigation_drawer_market_new">Nouvelle annonce</string>
+    <string name="navigation_drawer_my_help">Aide</string>
+    <string name="navigation_drawer_my_profile">Mon profil</string>
+    <string name="navigation_drawer_my_market">Mes annonces</string>
+    <string name="navigation_drawer_my_alert">Mes alertes</string>
+     <string name="navigation_drawer_setttings">Préférences</string>
+    <string name="navigation_drawer_search">Rechercher</string>    
+    
+</resources>
