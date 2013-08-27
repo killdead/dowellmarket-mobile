@@ -1,0 +1,60 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@android:color/white"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:padding="5dp" >
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_margin="5dp"
+        android:ems="10"
+        android:hint="@string/prompt_password"
+        android:imeActionId="@+id/login"
+        android:imeActionLabel="@string/action_sign_in_short"
+        android:imeOptions="actionUnspecified"
+        android:inputType="textPassword"
+        android:maxLines="1"
+        android:singleLine="true" />
+
+    <EditText
+        android:id="@+id/login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/password"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="5dp"
+        android:ems="10"
+        android:hint="@string/prompt_login"
+        android:inputType="text"
+        android:maxLines="1"
+        android:singleLine="true" >
+
+        <requestFocus />
+    </EditText>
+
+    <Button
+        android:id="@+id/loginbutton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/password"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="22dp"
+        android:onClick="AttemptLogin"
+        android:text="@string/action_sign_in_short" />
+
+    <ImageView
+        android:id="@+id/logsitelogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/login"
+        android:layout_alignLeft="@+id/loginbutton"
+        android:layout_marginBottom="56dp"
+        android:contentDescription="@string/logo_login"
+        android:src="@drawable/dwm_logo" />
+    
+    </RelativeLayout>

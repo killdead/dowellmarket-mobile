@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="sidemenu">
+        <item>Maison</item>
+        <item>Appartement</item>
+        <item>Porte-feuille</item>
+        <item>Autres</item>
+    </string-array>
+</resources>

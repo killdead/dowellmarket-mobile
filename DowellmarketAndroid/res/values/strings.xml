@@ -155,6 +155,8 @@
     <string name="error_license_years_not_enough">"Vous n'avez pas assez d'années de permis."</string>
     <string name="error_occured">Une erreur est survenue.</string>
     <string name="error_occured_server">Une erreur est survenue sur nos serveurs. Nous faisons de notre mieux pour corriger le problème. Veuillez réessayer ultérieurement.</string>
+      <string name="error_login_length">Le login doit comporter au minimun 6 caractères.</string>
+ 
     <string name="error_password_length">Votre mot de passe doit comporter au minimun 6 caractères.</string>
     <string name="error_payment">Erreur de paiement</string>
     <string name="error_profile_imcomplete">Votre profil est incomplet.</string>
@@ -323,7 +325,7 @@
     <string name="sign_in_error">"Une erreur c'est produite lors de la connexion. Veuillez ressayer."</string>
     <string name="sign_in_loading">Connexion en cours…</string>
     <string name="sign_in_on_website_to_view_all_infos">"Connectez-vous sur le site www.drivy.com pour avoir accès à l'intégralité des fonctionnalités"</string>
-    <string name="sign_out">Déconnecter</string>
+    <string name="sign_out">Se déconnecter</string>
     <string name="sign_up_loading">Inscription en cours…</string>
     <string name="sign_up_success">Inscription réussie !</string>
     <string name="sign_up_success_message">"Vous devez maintenant activer votre compte depuis l'email

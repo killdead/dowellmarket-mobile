@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -21,10 +22,11 @@ import com.dowellmarket.android.adapter.NavigationDrawerAdapter;
 import com.dowellmarket.android.fragment.ProgressDialogFragment;
 import com.dowellmarket.android.http.Api;
 import com.dowellmarket.android.util.ErrorDisplay;
-
+import com.dowellmarket.android.http.ApiResponse;
+import com.dowellmarket.android.model.User;
 
 public class BaseFragmentActivity extends ActionBarActivity 
-implements  AdapterView.OnItemClickListener {
+implements  ApiResponse.OnApiResponseListener,AdapterView.OnItemClickListener {
   protected boolean actionBarEnabled = true;
   protected Api mApi;
   protected boolean mCancellableProgress = true;
@@ -108,56 +110,51 @@ implements  AdapterView.OnItemClickListener {
     	super.onActivityResult(paramInt1, paramInt2, paramIntent);
       
     }
+  }*/
+
+  public void onApiRequestFailure(int RequestCode, int statusCode, String httpError, String appError)
+  {
+    ErrorDisplay.show(this.mContext, statusCode, httpError, appError);
   }
 
-  public void onApiRequestFailure(int paramInt1, int paramInt2, String paramString1, String paramString2)
+  public void onApiRequestFinish(int RequestCode)
   {
-    ErrorDisplay.show(this.mContext, paramInt2, paramString1, paramString2);
+    //showProgress(false);
   }
 
-  public void onApiRequestFinish(int paramInt)
+  public void onApiRequestStart(int RequestCode)
   {
-    showProgress(false);
+    //showProgress(true);
   }
 
-  public void onApiRequestStart(int paramInt)
+  public void onApiRequestSuccess(int RequestCode, int statusCode, String paramString)
   {
-    showProgress(true);
-  }
-
-  public void onApiRequestSuccess(int paramInt1, int paramInt2, String paramString)
-  {
-    showProgress(false);
-    switch (paramInt1)
+    //showProgress(false);
+	  
+    switch (RequestCode)
     {
-    default:
+    case Api.REQUEST_CODE_USER_SIGN_IN: this.mIntent = new Intent(this.mContext, HomeActivity.class);
+                                        this.mIntent.putExtra("user", paramString);
+                                        this.mContext.startActivity(this.mIntent);
+                                        if (TextUtils.isEmpty(paramString))
+                                            return;
+                                          User localUser = User.fromString(paramString);
+                                          com.dowellmarket.android.model.Settings.getInstance().setUserApiToken(localUser.getApiToken());                                   
+                                          setResult(-1);
+                                          finish();
+                                          
+                                          break;
     case 2:
     case 9:
     case 11:
+    	default:return;
     }
-    while (true)
-    {
-      return;
-      this.mIntent = new Intent(this.mContext, ProfileShowActivity.class);
-      this.mIntent.putExtra("user", paramString);
-      this.mContext.startActivity(this.mIntent);
-      continue;
-      this.mIntent = new Intent(this.mContext, RentalsConfirmActivity.class);
-      this.mContext.startActivity(this.mIntent);
-      continue;
-      if (TextUtils.isEmpty(paramString))
-        continue;
-      User localUser = User.fromString(paramString);
-      if (localUser == null)
-        continue;
-      com.drivy.android.model.Settings.getInstance().setUserApiToken(localUser.getApiToken());
-      PushNotificationsCenter.enable(this.mContext);
-      setResult(-1);
-      finish();
-    }
+  
+    
+    
   }
 
- 
+ /*
 
   public void onCancel(ProgressDialogFragment paramProgressDialogFragment, int paramInt)
   {

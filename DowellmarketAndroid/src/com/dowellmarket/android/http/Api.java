@@ -6,6 +6,7 @@ import android.util.Log;
 
 import com.dowellmarket.android.model.Filters;
 import com.dowellmarket.android.model.Settings;
+import com.dowellmarket.android.model.User;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.RequestParams;
 import java.io.UnsupportedEncodingException;
@@ -13,7 +14,7 @@ import org.apache.http.entity.StringEntity;
 
 public class Api
 {
-  private static final String BASE_URL = "http://192.168.0.12/elgg";
+  private static final String BASE_URL = "http://192.168.0.12/elgg/services/api/rest/json/?method=";
   private static final String METHOD_GET = "GET";
   private static final String METHOD_POST = "POST";
   private static final String METHOD_PUT = "PUT";
@@ -33,13 +34,13 @@ public class Api
   public static final int REQUEST_CODE_CAR_PRE_BOOK = 9;
   public static final int REQUEST_CODE_CAR_REQUEST = 8;
   public static final int REQUEST_CODE_DEVICE = 15;
-  public static final int REQUEST_CODE_PICTURES_UPLOAD_SETTINGS = 1;
+  public static final int REQUEST_CODE_PICTURES_UPLOAD_SETTINGS = 11;
   public static final int REQUEST_CODE_PROFILE_AUTH_TOKEN = 13;
   public static final int REQUEST_CODE_SEARCH = 10;
   public static final int REQUEST_CODE_USER_PROFILE_GET = 2;
   public static final int REQUEST_CODE_USER_PROFILE_PUT = 3;
   public static final int REQUEST_CODE_USER_REVIEWS = 4;
-  public static final int REQUEST_CODE_USER_SIGN_IN = 11;
+  public static final int REQUEST_CODE_USER_SIGN_IN = 1;
   public static final int REQUEST_CODE_USER_SIGN_UP = 12;
   private static final String SUB_PATH_AVAILABILITY = "availability";
   private static final String SUB_PATH_BOOKING_AUTHORIZATION = "booking_authorization";
@@ -126,7 +127,12 @@ public class Api
   {
     return new ApiResponse(this.mContext, paramInt, this.mListener);
   }
-
+  public void postSession(User paramUser)
+  {
+    this.mApiResponse = newApiResponse(REQUEST_CODE_USER_SIGN_IN);
+    _post(this.mContext, "auth.gettoken", paramUser.toString(), this.mApiResponse);
+  }
+/*
   public void getCar(Long paramLong)
   {
     String str = "cars/" + paramLong.toString();
@@ -207,7 +213,7 @@ public class Api
     client.cancelRequests(this.mContext, true);
   }
 
-  /*public void postCarNew(CarNew paramCarNew)
+  public void postCarNew(CarNew paramCarNew)
   {
     String str = "{\"car\":" + paramCarNew.toString() + "}";
     this.mApiResponse = newApiResponse(14);
@@ -242,11 +248,7 @@ public class Api
     _post(this.mContext, "registrations", str, this.mApiResponse);
   }
 
-  public void postSession(User paramUser)
-  {
-    this.mApiResponse = newApiResponse(11);
-    _post(this.mContext, "sessions", paramUser.toString(), this.mApiResponse);
-  }
+
 
   public void putProfile(User paramUser)
   {

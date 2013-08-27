@@ -306,12 +306,12 @@ public class ApiResponse extends AsyncHttpResponseHandler
 
   public static abstract interface OnApiResponseListener
   {
-    public abstract void onApiRequestFailure(int paramInt1, int paramInt2, String paramString1, String paramString2);
+    public abstract void onApiRequestFailure(int RequestCode, int statusCode, String httpError, String appError);
 
-    public abstract void onApiRequestFinish(int paramInt);
+    public abstract void onApiRequestFinish(int RequestCode);
 
-    public abstract void onApiRequestStart(int paramInt);
+    public abstract void onApiRequestStart(int RequestCode);
 
-    public abstract void onApiRequestSuccess(int paramInt1, int paramInt2, String paramString);
+    public abstract void onApiRequestSuccess(int RequestCode, int statusCode, String paramString);
   }
 }
