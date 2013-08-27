@@ -1,4 +1,4 @@
-package com.dowellmarket.android.activity;
+package com.dowellmarket.android;
 
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.dowellmarket.android.R;
+import com.dowellmarket.android.activity.BaseFragmentActivity;
 import com.dowellmarket.android.model.Settings;
 import com.dowellmarket.android.model.User;
 
@@ -26,15 +27,15 @@ implements View.OnClickListener, View.OnKeyListener
 	
 	public void onCreate(Bundle paramBundle)
 	  {
-	    super.onCreate(paramBundle, 2130903081);
+	    super.onCreate(paramBundle, R.layout.activity_login);
 	    this.mSettings = Settings.getInstance();
 	    this.mLoginEditText = ((EditText)findViewById(R.id.login));
 	    this.mPasswordEditText = ((EditText)findViewById(R.id.password));
 	    this.mSignUpButton = ((Button)findViewById(R.id.loginbutton));
 	    this.mSignUpButton.setOnClickListener(this);
 	    this.mPasswordEditText.setOnKeyListener(this);
-	    if (!TextUtils.isEmpty(this.mSettings.getUserEmail()))
-	      this.mLoginEditText.setText(this.mSettings.getUserEmail());
+	   /* if (this.mSettings != null && !TextUtils.isEmpty(this.mSettings.getUserLogin()))
+	      this.mLoginEditText.setText(this.mSettings.getUserLogin());*/
 	  
 	  }
 
@@ -53,7 +54,7 @@ implements View.OnClickListener, View.OnKeyListener
 	 
 	 public void onClick(View paramView)
 	  {
-		 
+		 _signIn(); 
 		
 	   /* switch (paramView.getId())
 	    {
@@ -92,18 +93,18 @@ implements View.OnClickListener, View.OnKeyListener
 			localEditText = this.mLoginEditText;
 			this.mLoginEditText.setError(this.mRes.getString(R.string.error_empty_field));
 		}
-		if (str1.length() < 6) {
+		if (str1.length() < 6 && !haserror) {
 			haserror = true;
 			localEditText = this.mLoginEditText;
 			this.mLoginEditText.setError(this.mRes.getString(R.string.error_login_length));
 		}
 		String str2 = this.mPasswordEditText.getText().toString();
-		if ((str2.length() < 6) || (str2.length() > 128)) {
-			haserror = false;
+		if ((str2.length() < 6) || (str2.length() > 128) && !haserror) {
+			haserror = true;
 			localEditText = this.mPasswordEditText;
 			this.mPasswordEditText.setError(this.mRes.getString(R.string.error_password_length));
 		}
-		if (haserror)
+		if (haserror) 
 			localEditText.requestFocus();
 		else {
 			

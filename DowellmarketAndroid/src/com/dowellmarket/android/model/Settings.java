@@ -12,7 +12,7 @@ public class Settings
   private Settings()
   {
     String str = this.mData.getSettings();
-    if (str != null);
+    if (str != null)
     this.mSettings = ((SettingsObject)SettingsObject.fromString(str, SettingsObject.class)); 
   }
 

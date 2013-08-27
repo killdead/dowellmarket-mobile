@@ -1,7 +1,7 @@
 package com.dowellmarket.android.model;
 
 
-import com.dowellmarket.android.activity.LoginActivity;
+import com.dowellmarket.android.LoginActivity;
 
 import android.content.Context;
 import android.content.Intent;

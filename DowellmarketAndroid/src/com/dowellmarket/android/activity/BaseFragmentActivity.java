@@ -16,7 +16,6 @@ import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.dowellmarket.android.HomeActivity;
 import com.dowellmarket.android.R;
 import com.dowellmarket.android.adapter.NavigationDrawerAdapter;
 import com.dowellmarket.android.fragment.ProgressDialogFragment;

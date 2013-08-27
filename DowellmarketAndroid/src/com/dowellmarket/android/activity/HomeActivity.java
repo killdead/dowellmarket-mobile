@@ -1,10 +1,12 @@
-package com.dowellmarket.android;
+package com.dowellmarket.android.activity;
 
 
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 
-import com.dowellmarket.android.activity.BaseFragmentActivity;
+import com.dowellmarket.android.R;
+import com.dowellmarket.android.R.id;
+import com.dowellmarket.android.R.layout;
 import com.dowellmarket.android.adapter.MarketHomeAdapter;
 import com.dowellmarket.android.fragment.ListingFragment;
 
