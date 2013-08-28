@@ -60,7 +60,7 @@ implements  ApiResponse.OnApiResponseListener,AdapterView.OnItemClickListener {
     this.mContext = this;
     this.mRes = getResources();
     this.mExtras = getIntent().getExtras();
-    //this.mApi = new Api(this.mContext, this);
+    this.mApi = new Api(this.mContext, this);
     _setNavigationDrawer();
   }
 
