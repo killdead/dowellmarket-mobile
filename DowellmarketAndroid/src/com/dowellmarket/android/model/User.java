@@ -1,7 +1,10 @@
 package com.dowellmarket.android.model;
 
 
+import java.util.HashMap;
+
 import com.dowellmarket.android.LoginActivity;
+import com.loopj.android.http.RequestParams;
 
 import android.content.Context;
 import android.content.Intent;
@@ -80,13 +83,7 @@ public class User extends Model
     return this.address_line2;
   }
 
-  public String getApiToken()
-  {
-    Settings localSettings = Settings.getInstance();
-    if (localSettings.hasApiToken())
-      this.api_token = localSettings.getUserApiToken();
-    return this.api_token;
-  }
+ 
 
   public String getAuthToken()
   {
@@ -253,6 +250,16 @@ public class User extends Model
 public void setLogin(String paramString) {
 	this.username = paramString;
 	
+}
+
+public RequestParams getLoginRequestParams() {
+
+	HashMap<String, String> paramMap = new HashMap<String, String>();
+	paramMap.put("method", "auth.gettoken");
+	paramMap.put("username", username);
+	paramMap.put("password",password);
+	return new RequestParams(paramMap);
+
 }
 }
 

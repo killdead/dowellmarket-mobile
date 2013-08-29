@@ -300,7 +300,10 @@ public class ApiResponse extends AsyncHttpResponseHandler
     }
     else
     {
-      Log.i("ApiResponse - Success - " + paramInt, paramString.substring(0, Math.min(paramString.length(), 50)) + " ...");
+      Log.i("ApiResponse - Success 01 - " + paramInt, paramString/*.substring(0, Math.min(paramString.length(), 50)) + " ..."*/);
+      if (!_hasErrorsBody(paramString))
+    	  this.mListener.onApiRequestSuccess(this.mRequestCode, paramInt, paramString);
+   
     }
   }
 

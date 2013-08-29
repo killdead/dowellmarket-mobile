@@ -1,15 +1,20 @@
 package com.dowellmarket.android;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.dowellmarket.android.R;
 import com.dowellmarket.android.activity.BaseFragmentActivity;
+import com.dowellmarket.android.activity.HomeActivity;
+import com.dowellmarket.android.model.Model;
 import com.dowellmarket.android.model.Settings;
 import com.dowellmarket.android.model.User;
 
@@ -55,32 +60,7 @@ implements View.OnClickListener, View.OnKeyListener
 	 public void onClick(View paramView)
 	  {
 		 _signIn(); 
-		
-	   /* switch (paramView.getId())
-	    {
-	    case 2131230906:
-	    case 2131230907:
-	    default:
-	    case 2131230908:
-	    case 2131230909:
-	    case 2131230905:
-	    }
-	    while (true)
-	    {
-	      return;
-	      Session localSession = Session.getActiveSession();
-	      if ((!localSession.isOpened()) && (!localSession.isClosed()))
-	      {
-	        localSession.openForRead(new Session.OpenRequest(this).setCallback(this.mFacebookStatusCallback));
-	        continue;
-	      }
-	      Session.openActiveSession(this, true, this.mFacebookStatusCallback);
-	      continue;
-	      this.mIntent = new Intent(this.mContext, RegistrationsNewActivity.class);
-	      startActivityForResult(this.mIntent, 7);
-	      continue;
-	      startActivity(new Intent(this, PagesHowItWorksActivity.class));
-	    }*/
+	
 	  }
 	
 	
@@ -111,11 +91,37 @@ implements View.OnClickListener, View.OnKeyListener
 			  User localUser = new User(); 
 			  localUser.setLogin(str1);
 			  localUser.setPassword(str2); 
+			  localUser.method="auth.gettoken";
+			  
+			  Log.i("ApiLogin",localUser.toString());
 			  this.mApi.postSession(localUser);
 			 
 		
 		}
 	}
+	 public void onApiRequestSuccess(int paramInt1, int httpError, String paramString)
+	  {
+		 Model.StandardResponse localResponse = Model.getStandardResponse(paramString);
+	     
+		switch (localResponse.status) {
+		case 0:
+			String str = "{\"userAuthToken\":" + localResponse.result + "}";
+			this.mSettings.setUserAuthToken(str);
+
+			this.mIntent = new Intent(this.mContext, HomeActivity.class);
+			// this.mIntent.putExtra("user", paramString);
+			this.mContext.startActivity(this.mIntent);
+			setResult(-1);
+			finish();
+			break;
+		case -1:
+		default:
+			Toast.makeText(this.mContext, localResponse.message,
+					Toast.LENGTH_LONG).show();
+		}
+		
+		    
+	  }
 
 	
 

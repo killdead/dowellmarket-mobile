@@ -130,7 +130,7 @@ implements  ApiResponse.OnApiResponseListener,AdapterView.OnItemClickListener {
   {
     //showProgress(false);
 	  
-    switch (RequestCode)
+ /*   switch (RequestCode)
     {
     case Api.REQUEST_CODE_USER_SIGN_IN: this.mIntent = new Intent(this.mContext, HomeActivity.class);
                                         this.mIntent.putExtra("user", paramString);
@@ -147,7 +147,7 @@ implements  ApiResponse.OnApiResponseListener,AdapterView.OnItemClickListener {
     case 9:
     case 11:
     	default:return;
-    }
+    }*/
   
     
     

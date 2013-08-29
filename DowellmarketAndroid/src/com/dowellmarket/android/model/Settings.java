@@ -13,7 +13,9 @@ public class Settings
   {
     String str = this.mData.getSettings();
     if (str != null)
-    this.mSettings = ((SettingsObject)SettingsObject.fromString(str, SettingsObject.class)); 
+    this.mSettings = ((SettingsObject)SettingsObject.fromString(str, SettingsObject.class));
+    else
+    this.mSettings = new SettingsObject();
   }
 
   public static Settings getInstance()
@@ -21,15 +23,6 @@ public class Settings
     return SettingsHolder.instance;
   }
 
-  public String getMapDisplayMode()
-  {
-    return this.mSettings.mapDisplayMode;
-  }
-
-  public String getUserApiToken()
-  {
-    return this.mSettings.userApiToken;
-  }
 
   public String getUserAuthToken()
   {
@@ -49,8 +42,8 @@ public class Settings
 
   public boolean hasApiToken()
   {
-    if (this.mSettings.userApiToken != null)
-      return true;
+    //if (this.mSettings.userApiToken != null)
+      //return true;
       
       return false;
   }
@@ -99,8 +92,6 @@ public class Settings
 
   private class SettingsObject extends Model
   {
-    private String mapDisplayMode;
-    private String userApiToken;
     private String userAuthToken;
     private String userEmail;
     private String userLogin;

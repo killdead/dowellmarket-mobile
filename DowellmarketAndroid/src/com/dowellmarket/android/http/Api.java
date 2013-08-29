@@ -1,20 +1,21 @@
 package com.dowellmarket.android.http;
 
+import java.io.UnsupportedEncodingException;
+
+import org.apache.http.entity.StringEntity;
+
 import android.content.Context;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.dowellmarket.android.model.Filters;
 import com.dowellmarket.android.model.Settings;
 import com.dowellmarket.android.model.User;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.RequestParams;
-import java.io.UnsupportedEncodingException;
-import org.apache.http.entity.StringEntity;
 
 public class Api
 {
-  private static final String BASE_URL = "http://192.168.0.12/elgg/services/api/rest/json/?method=";
+  private static final String BASE_URL = "http://192.168.0.12/elgg/services/api/rest/json?";
   private static final String METHOD_GET = "GET";
   private static final String METHOD_POST = "POST";
   private static final String METHOD_PUT = "PUT";
@@ -110,12 +111,7 @@ public class Api
     client.addHeader("HTTP_X_VL_AUTHORIZATION", "cf4d2f5591763483bf1f258c5820e411");
     client.addHeader("Accept-Charset", "UTF-8");
     Settings localSettings = Settings.getInstance();
-    if ((localSettings != null) && (localSettings.hasApiToken()))
-    {
-      String str = localSettings.getUserApiToken();
-      if (!TextUtils.isEmpty(str))
-        client.addHeader("Authorization", "Token token=\"" + str + "\"");
-    }
+   
   }
 
   private static void _setStartMessage(String paramString1, String paramString2)
@@ -130,7 +126,8 @@ public class Api
   public void postSession(User paramUser)
   {
     this.mApiResponse = newApiResponse(REQUEST_CODE_USER_SIGN_IN);
-    _post(this.mContext, "auth.gettoken", paramUser.toString(), this.mApiResponse);
+   
+    _post(this.mContext, "", paramUser.getLoginRequestParams(), this.mApiResponse);
   }
 /*
   public void getCar(Long paramLong)
@@ -256,4 +253,22 @@ public class Api
     this.mApiResponse = newApiResponse(3);
     _put(this.mContext, "profile", str, this.mApiResponse);
   }*/
+
+private void _post(Context paramContext, String paramString1,
+		RequestParams mRequestParams, ApiResponse paramApiResponse) {
+	 
+	    _setHeaders();
+	    _setStartMessage(BASE_URL, "POST");
+	    try
+	    {
+	      client.post(mContext, BASE_URL,mRequestParams, paramApiResponse);
+	      return;
+	    }
+	    catch (Exception localUnsupportedEncodingException)
+	    {
+	     
+	        localUnsupportedEncodingException.printStackTrace();
+	    }
+	
+}
 }
