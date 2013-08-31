@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
@@ -46,13 +47,13 @@ public class MarketHomeAdapter extends FragmentPagerAdapter
     return this.mTabs.size();
   }
 
-  public Fragment getItem(int paramInt)
+  public Fragment getItem(int position)
   {
-    TabInfo localTabInfo = (TabInfo)this.mTabs.get(paramInt);
+    TabInfo localTabInfo = (TabInfo)this.mTabs.get(position);
     return Fragment.instantiate(this.mContext, localTabInfo.clss.getName(), localTabInfo.args);
   }
 
-  public void onPageScrollStateChanged(int paramInt)
+  public void onPageScrollStateChanged(int position)
   {
   }
 
@@ -60,16 +61,16 @@ public class MarketHomeAdapter extends FragmentPagerAdapter
   {
   }
 
-  public void onPageSelected(int paramInt)
+  public void onPageSelected(int position)
   {
-    this.mActionBar.setSelectedNavigationItem(paramInt);
+    this.mActionBar.setSelectedNavigationItem(position);
   }
 
-  public void onTabReselected(ActionBar.Tab paramTab, FragmentTransaction paramFragmentTransaction)
+  public void onTabReselected(Tab paramTab, FragmentTransaction paramFragmentTransaction)
   {
   }
 
-  public void onTabSelected(ActionBar.Tab paramTab, FragmentTransaction paramFragmentTransaction)
+  public void onTabSelected(Tab paramTab, FragmentTransaction paramFragmentTransaction)
   {
     Object localObject = paramTab.getTag();
     for (int i = 0; i < this.mTabs.size(); i++)
@@ -77,10 +78,11 @@ public class MarketHomeAdapter extends FragmentPagerAdapter
       if (this.mTabs.get(i) != localObject)
         continue;
       this.mViewPager.setCurrentItem(i);
+      
     }
   }
 
-  public void onTabUnselected(ActionBar.Tab paramTab, FragmentTransaction paramFragmentTransaction)
+  public void onTabUnselected(Tab paramTab, FragmentTransaction paramFragmentTransaction)
   {
   }
 
@@ -95,4 +97,7 @@ public class MarketHomeAdapter extends FragmentPagerAdapter
       this.args = paramBundle;
     }
   }
+
+
+
 }

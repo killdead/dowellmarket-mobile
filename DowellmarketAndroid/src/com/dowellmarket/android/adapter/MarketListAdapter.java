@@ -57,8 +57,8 @@ public class MarketListAdapter extends BaseAdapter
     {
       localViewHolder = new ViewHolder();
       paramView = this.mInflater.inflate(2130903107, null);
-    /*  ViewHolder.access$102(localViewHolder, (ImageView)paramView.findViewById(2131230814));
-      ViewHolder.access$202(localViewHolder, (ImageView)paramView.findViewById(2131230973));
+ //   ViewHolder.access$102(localViewHolder, (ImageView)paramView.findViewById(2131230814));
+       /* ViewHolder.access$202(localViewHolder, (ImageView)paramView.findViewById(2131230973));
       ViewHolder.access$302(localViewHolder, (ImageView)paramView.findViewById(2131230894));
       ViewHolder.access$402(localViewHolder, (TextView)paramView.findViewById(2131230868));
       ViewHolder.access$502(localViewHolder, (TextView)paramView.findViewById(2131230823));
@@ -140,8 +140,8 @@ public class MarketListAdapter extends BaseAdapter
 
   private class ViewHolder
   {
-   /* private TextView availabilityStatus;
-    private ImageView call;
+   private TextView availabilityStatus;
+ /*    private ImageView call;
     private ImageView carPhoto;
     private TextView city;
     private TextView distance;
@@ -157,8 +157,3 @@ public class MarketListAdapter extends BaseAdapter
     }
   }
 }
-
-/* Location:           C:\Users\Utilisateur\Documents\Dev\ApkToJar\tools\classes-dex2jar.jar
- * Qualified Name:     com.drivy.android.adapter.CarListAdapter
- * JD-Core Version:    0.6.0
- */

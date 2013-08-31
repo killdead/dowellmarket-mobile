@@ -7,13 +7,15 @@ import android.support.v4.view.ViewPager;
 import com.dowellmarket.android.R;
 import com.dowellmarket.android.R.id;
 import com.dowellmarket.android.R.layout;
+import com.dowellmarket.android.R.string;
 import com.dowellmarket.android.adapter.MarketHomeAdapter;
+import com.dowellmarket.android.adapter.MarketHomeAdapter.TabInfo;
 import com.dowellmarket.android.fragment.ListingFragment;
 
 
 public class HomeActivity extends BaseFragmentActivity {
 	private ViewPager mViewPager;
-	private MarketHomeAdapter mViewPagerAdapter;
+	private MarketHomeAdapter mMarketHomeAdapter;
 	public HomeActivity()
 	  {
 	    super();
@@ -23,15 +25,24 @@ public class HomeActivity extends BaseFragmentActivity {
 	  {
 	    super.onCreate(paramBundle, R.layout.activity_home);
 	    this.mViewPager = ((ViewPager)findViewById(R.id.homePager));
-	    this.mViewPagerAdapter = new MarketHomeAdapter(this, this.mViewPager);
-	    this.mViewPagerAdapter.addTab(getSupportActionBar().newTab().setText("Tab 1"), ListingFragment.class, null);
-	    this.mViewPagerAdapter.addTab(getSupportActionBar().newTab().setText("Tab 2"), ListingFragment.class, null);
-	    this.mViewPagerAdapter.addTab(getSupportActionBar().newTab().setText("Tab 3"), ListingFragment.class, null);
-	    this.mViewPagerAdapter.addTab(getSupportActionBar().newTab().setText("Tab 4"), ListingFragment.class, null);
+	    this.mMarketHomeAdapter = new MarketHomeAdapter(this, this.mViewPager);
+	    Bundle test = new Bundle();
+	    test.putString("texte","list1");
+	    this.mMarketHomeAdapter.addTab(getSupportActionBar().newTab().setText(R.string.navigation_category_house), ListingFragment.class, test);
+	    test.remove("texte");
+	    test.putString("texte","list2");
+	    this.mMarketHomeAdapter.addTab(getSupportActionBar().newTab().setText(R.string.navigation_category_apartment), ListingFragment.class, test);
+	    test.remove("texte");
+	    test.putString("texte","list3");
+	    this.mMarketHomeAdapter.addTab(getSupportActionBar().newTab().setText(R.string.navigation_category_wallet), ListingFragment.class,  test);
+	    test.remove("texte");
+	    test.putString("texte","list4");
+	    this.mMarketHomeAdapter.addTab(getSupportActionBar().newTab().setText(R.string.navigation_category_other), ListingFragment.class, test);
 		    
-	    this.mViewPager.setAdapter(this.mViewPagerAdapter);
+	    this.mViewPager.setAdapter(this.mMarketHomeAdapter);
 	    getSupportActionBar().setNavigationMode(2);
 	  }
+
 
 	/*@Override
 	protected void onCreate(Bundle savedInstanceState) {

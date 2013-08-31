@@ -9,6 +9,10 @@
     <string name="navigation_drawer_my_market">Mes annonces</string>
     <string name="navigation_drawer_my_alert">Mes alertes</string>
      <string name="navigation_drawer_setttings">Préférences</string>
-    <string name="navigation_drawer_search">Rechercher</string>    
+    <string name="navigation_drawer_search">Rechercher</string>
+    <string name="navigation_category_apartment">Appartement</string>
+    <string name="navigation_category_house">Maison</string>
+    <string name="navigation_category_wallet">Portefeuille</string>
+    <string name="navigation_category_other">Autres</string>    
     
 </resources>

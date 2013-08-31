@@ -1,8 +1,11 @@
 package com.dowellmarket.android.fragment;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +18,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.dowellmarket.android.R;
+import com.dowellmarket.android.activity.HomeActivity;
+import com.dowellmarket.android.adapter.MarketListAdapter;
 import com.dowellmarket.android.model.Filters;
 import com.dowellmarket.android.model.SearchMarket;
 import com.dowellmarket.android.util.Constants;
@@ -23,7 +28,9 @@ public class ListingFragment extends Fragment
   implements AdapterView.OnItemClickListener, AbsListView.OnScrollListener, View.OnClickListener
 {
   private ListView marketList;
- // private CarListAdapter carListAdapter;
+ private MarketListAdapter marketListAdapter;
+  
+  
   private int firstVisibleItem;
   private OnListingListener listener;
   private Context mContext;
@@ -56,6 +63,8 @@ public class ListingFragment extends Fragment
   {
     return paramLayoutInflater.inflate(R.layout.fragment_listing, paramViewGroup, false);
   }
+  
+ 
 
   public void onItemClick(AdapterView<?> paramAdapterView, View paramView, int paramInt, long paramLong)
   {
@@ -69,14 +78,14 @@ public class ListingFragment extends Fragment
 
   public void onResponse(String paramString)
   {
-   /* this.mFooterProgress.setVisibility(4);
-    if ((this.mSearch != null) && (this.mFilters.getPage() != null) && (this.mFilters.getPage().intValue() > 1) && (this.mSearch.getResults().size() < this.mSearch.getTotal().intValue()) && (!TextUtils.isEmpty(paramString)))
+    this.mFooterProgress.setVisibility(4);
+   if ((this.mSearch != null) && (this.mFilters.getPage() != null) && (this.mFilters.getPage().intValue() > 1) && (this.mSearch.getResults().size() < this.mSearch.getTotal().intValue()) && (!TextUtils.isEmpty(paramString)))
     {
-      SearchMarket localSearch = SearchMarket.fromString(paramString);
+     /*  SearchMarket localSearch = SearchMarket.fromString(paramString);
       this.mSearch.merge(localSearch);
       if ((this.mSearch == null) || (this.mSearch.getResults() == null) || (this.mSearch.getTotal() == null) || (this.mSearch.getResults().size() <= 0) || (this.mSearch.getTotal().intValue() <= 0))
         break label287;
-      this.carListAdapter = new CarListAdapter(this.mContext, this.mSearch.getResults());
+      this.marketListAdapter = new marketListAdapter(this.mContext, this.mSearch.getResults());
       this.carList.setAdapter(this.carListAdapter);
       if (this.scrolled)
       {
@@ -89,17 +98,16 @@ public class ListingFragment extends Fragment
       arrayOfObject[0] = Integer.valueOf(this.mSearch.getResults().size());
       arrayOfObject[1] = this.mSearch.getTotal();
       localTextView.setText(localResources.getString(2131493190, arrayOfObject));
-      this.noResultLayout.setVisibility(8);
-      this.carList.setVisibility(0);
+     */ 
+	   this.noResultLayout.setVisibility(8);
+      this.marketList.setVisibility(0);
     }
-    while (true)
+   else
     {
-      return;
-      this.mSearch = Search.fromString(paramString);
-      break;
-      label287: this.noResultLayout.setVisibility(0);
-      this.carList.setVisibility(8);
-    }*/
+      this.mSearch = SearchMarket.fromString(paramString);
+      this.noResultLayout.setVisibility(0);
+      this.marketList.setVisibility(8);
+    }
   }
 
   public void onScroll(AbsListView paramAbsListView, int paramInt1, int paramInt2, int paramInt3)
@@ -131,17 +139,28 @@ public class ListingFragment extends Fragment
   public void onViewCreated(View paramView, Bundle paramBundle)
   {
     super.onViewCreated(paramView, paramBundle);
-    this.mContext = getActivity();
+    //this.mContext = getActivity();
     this.mLayoutInflater = getLayoutInflater(paramBundle);
-    //this.carList = ((ListView)paramView.findViewById(2131230959));
-   // this.noResultLayout = ((LinearLayout)paramView.findViewById(2131230960));
-   // this.mFooterView = ((RelativeLayout)this.mLayoutInflater.inflate(2130903106, null));
-    //this.mFooterTextView = ((TextView)this.mFooterView.findViewById(2131230970));
-    //this.mFooterProgress = ((ProgressBar)this.mFooterView.findViewById(2131230969));
-    //this.carList.addFooterView(this.mFooterView, null, false);
-    //this.carList.setOnItemClickListener(this);
-    //this.carList.setOnScrollListener(this);
-    //this.mFooterTextView.setOnClickListener(this);
+    this.marketList = ((ListView)paramView.findViewById(R.id.market_list));
+    this.noResultLayout = ((LinearLayout)paramView.findViewById(R.id.layout_no_results));
+    this.mFooterView = ((RelativeLayout)this.mLayoutInflater.inflate(R.layout.partial_footer, null));
+    this.mFooterTextView = ((TextView)this.mFooterView.findViewById(R.id.footer));
+    this.mFooterProgress = ((ProgressBar)this.mFooterView.findViewById(R.id.footer_progress));
+    this.marketList.addFooterView(this.mFooterView, null, false);
+    this.marketList.setOnItemClickListener(this);
+    this.marketList.setOnScrollListener(this);
+    this.mFooterTextView.setOnClickListener(this);
+    
+  //  this.onResponse(paramString);
+  }
+  
+  public void onAttach(Activity activity){
+      super.onAttach(activity);
+      this.mContext = (HomeActivity) getActivity();
+    }
+  
+  public void init() {
+   Log.i("Init","Init = ");
   }
 
   public void setOnListingListener(OnListingListener paramOnListingListener)
@@ -151,7 +170,7 @@ public class ListingFragment extends Fragment
 
   public static abstract interface OnListingListener
   {
-    public abstract void onCarSelected(Long paramLong, Float paramFloat, String paramString);
+    public abstract void onMarketSelected(Long paramLong, Float paramFloat, String paramString);
 
     public abstract void onScroll(int paramInt);
   }
