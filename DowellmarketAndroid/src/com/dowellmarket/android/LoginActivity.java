@@ -28,6 +28,7 @@ implements View.OnClickListener, View.OnKeyListener
 
 	public LoginActivity() {
 		super(R.string.login);
+		this.actionBarEnabled=false;
 	}
 	
 	public void onCreate(Bundle paramBundle)
