@@ -15,7 +15,7 @@ import com.loopj.android.http.RequestParams;
 
 public class Api
 {
-  private static final String BASE_URL = "http://192.168.0.12/elgg/services/api/rest/json?";
+  private static final String BASE_URL = "http://192.168.0.14/elgg/services/api/rest/json?";
   private static final String METHOD_GET = "GET";
   private static final String METHOD_POST = "POST";
   private static final String METHOD_PUT = "PUT";

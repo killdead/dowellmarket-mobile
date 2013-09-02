@@ -180,18 +180,18 @@ public class ApiResponse extends AsyncHttpResponseHandler
       switch (this.statusCode)
       {
       default:
-        str1 = localResources.getString(2131493029);
+        str1 = "Erreur serveur";//localResources.getString(2131493029);
         break;
       case 401:
         Settings.getInstance().setUserApiToken(null);
-        str1 = localResources.getString(2131493034);
+        str1 = "Erreur serveur";//localResources.getString(2131493034);
         break;
       case 403:
-        str1 = localResources.getString(2131493024);
+        str1 = "Erreur serveur";
         break;
       case 408:
       case 410:
-        str1 = localResources.getString(2131493094);
+        str1 = "Erreur serveur";//localResources.getString(2131493094);
       }
       
       return str1;
@@ -246,7 +246,7 @@ public class ApiResponse extends AsyncHttpResponseHandler
       if (!_hasErrorsBody(paramString))
     	  Log.d("ApiResponse - Failure", "No errors in body");
       
-      this.firstError = _parseFirstErrorBody(paramString);
+//      this.firstError = _parseFirstErrorBody(paramString);
       
       if (this.mListener == null)
     	  Log.e("ApiResponse - Error", "OnApiResponsemListener is not implemented");
@@ -258,10 +258,13 @@ public class ApiResponse extends AsyncHttpResponseHandler
 	    {
 	        this.statusCode = 410;
 	    }
-	    if ((!(paramThrowable instanceof ConnectException)) && (!(paramThrowable instanceof SocketTimeoutException)))
+	    if ((paramThrowable instanceof ConnectException) || (paramThrowable instanceof SocketTimeoutException))
 	    {
 	    	  this.statusCode = 408;
 	    }
+    
+	    this.mListener.onApiRequestFailure(this.mRequestCode, this.statusCode, _getError(), _getLocalizedError(this.mContext));
+	    
     }
          
   }

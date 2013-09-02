@@ -12,26 +12,27 @@ private static final String DISPLAY_TYPE_DIALOG = "DIALOG";
   @SuppressWarnings("unused")
 private static final String DISPLAY_TYPE_TOAST = "TOAST";
 
-  public static void show(Context paramContext, int paramInt, String paramString1, String paramString2)
+  public static void show(Context paramContext, int paramInt, String httpError, String appError)
   {
-    if (paramString1 != null)
+    if (httpError != null)
     {
-      if ((paramString1.equals("user_not_found")) || (paramString1.equals("invalid_password")))
+      if ((httpError.equals("user_not_found")) || (httpError.equals("invalid_password")))
         DISPLAY_TYPE = "DIALOG";
-      if ((paramString1.equals("unconfirmed_user")) || (paramString1.equals("deleted_user")))
+      if ((httpError.equals("unconfirmed_user")) || (httpError.equals("deleted_user")))
         DISPLAY_TYPE = "DIALOG";
-      if ((paramString1.equals("sign_in_error")) || (paramString1.equals("age_not_enough")))
+      if ((httpError.equals("sign_in_error")) || (httpError.equals("age_not_enough")))
         DISPLAY_TYPE = "DIALOG";
-      if (paramString1.equals("license_years_not_enough"))
+      if (httpError.equals("license_years_not_enough"))
         DISPLAY_TYPE = "DIALOG";
     }
     if (DISPLAY_TYPE.equals("TOAST"))
-      Toast.makeText(paramContext.getApplicationContext(), paramString2, Toast.LENGTH_LONG).show();
+      Toast.makeText(paramContext.getApplicationContext(), appError, Toast.LENGTH_LONG).show();
     else {
       AlertDialog localAlertDialog = new AlertDialog.Builder(paramContext).create();
-      localAlertDialog.setTitle(2131493020);
-      localAlertDialog.setMessage(paramString2);
-      localAlertDialog.setButton(-1, paramContext.getResources().getString(2131493107), new ErrorDisplayClickListener());
+      localAlertDialog.setTitle("Erreur");
+      localAlertDialog.setMessage(appError);
+     
+      localAlertDialog.setButton(-1, "TextButton", new ErrorDisplayClickListener());
       localAlertDialog.show();
     }
   }
