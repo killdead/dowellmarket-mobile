@@ -12,6 +12,8 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBar.Tab;
 import android.support.v7.app.ActionBar.TabListener;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -54,6 +56,7 @@ public class MarketHomeAdapter extends FragmentPagerAdapter
   @Override
   public Fragment getItem(int position)
   {
+	Log.i("MarketHomeAdapter","getiem Position = "+position+" tabs size = "+mTabs.size());
     TabInfo localTabInfo = (TabInfo)this.mTabs.get(position);
     return Fragment.instantiate(this.mContext, localTabInfo.clss.getName(), localTabInfo.args);
   }
@@ -69,6 +72,7 @@ public class MarketHomeAdapter extends FragmentPagerAdapter
 
   public void onPageSelected(int position)
   {
+	  Log.i("MarketHomeAdapter","onPageSelected Position = "+position);
     this.mActionBar.setSelectedNavigationItem(position);
   }
 
@@ -81,10 +85,11 @@ public class MarketHomeAdapter extends FragmentPagerAdapter
     Object localObject = paramTab.getTag();
     for (int i = 0; i < this.mTabs.size(); i++)
     {
-      if (this.mTabs.get(i) != localObject)
-        continue;
+      if (this.mTabs.get(i) == localObject)
+      {
       this.mViewPager.setCurrentItem(i);
-      
+      break;
+      } 
     }
   }
 

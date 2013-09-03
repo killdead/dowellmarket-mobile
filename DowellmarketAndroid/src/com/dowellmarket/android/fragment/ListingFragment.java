@@ -16,6 +16,7 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.dowellmarket.android.R;
 import com.dowellmarket.android.activity.HomeActivity;
@@ -23,6 +24,7 @@ import com.dowellmarket.android.adapter.MarketListAdapter;
 import com.dowellmarket.android.model.Filters;
 import com.dowellmarket.android.model.SearchMarket;
 import com.dowellmarket.android.util.Constants;
+import com.dowellmarket.android.util.ErrorDisplay;
 
 public class ListingFragment extends Fragment
   implements AdapterView.OnItemClickListener, AbsListView.OnScrollListener, View.OnClickListener
@@ -50,7 +52,7 @@ public class ListingFragment extends Fragment
   @Override
   public void onCreate(Bundle savedInstanceState) {
       super.onCreate(savedInstanceState);
-      textDebug = getArguments() != null ? getArguments().getString("texte") : "not text";
+      textDebug = getArguments() != null ? getArguments().getString("category") : "not text";
   }
   
   @Override
@@ -74,8 +76,9 @@ public class ListingFragment extends Fragment
     this.marketList.setOnItemClickListener(this);
     this.marketList.setOnScrollListener(this);
     this.mFooterTextView.setOnClickListener(this);
-    this.mTextDebug = ((TextView) paramView.findViewById(R.id.text_debug));
-    this.mTextDebug.setText(this.textDebug);
+    Toast.makeText(mContext, this.textDebug, Toast.LENGTH_LONG).show();
+  //  this.mTextDebug = ((TextView) paramView.findViewById(R.id.text_debug));
+   // this.mTextDebug.setText(this.textDebug);
   //  this.onResponse(paramString);
   }
   
