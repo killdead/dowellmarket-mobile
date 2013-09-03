@@ -12,14 +12,17 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBar.Tab;
 import android.support.v7.app.ActionBar.TabListener;
 import android.support.v7.app.ActionBarActivity;
+
 import java.util.ArrayList;
+
+import com.dowellmarket.android.adapter.MarketHomeAdapter.TabInfo;
 
 public class MarketHomeAdapter extends FragmentPagerAdapter
   implements ActionBar.TabListener, ViewPager.OnPageChangeListener
 {
   private final ActionBar mActionBar;
   private final Context mContext;
-  private final ArrayList<TabInfo> mTabs = new ArrayList();
+  private final ArrayList<TabInfo> mTabs = new ArrayList<TabInfo>();
   private final ViewPager mViewPager;
 
   public MarketHomeAdapter(ActionBarActivity paramActionBarActivity, ViewPager paramViewPager)
@@ -42,11 +45,13 @@ public class MarketHomeAdapter extends FragmentPagerAdapter
     notifyDataSetChanged();
   }
 
+  @Override
   public int getCount()
   {
     return this.mTabs.size();
   }
 
+  @Override
   public Fragment getItem(int position)
   {
     TabInfo localTabInfo = (TabInfo)this.mTabs.get(position);
@@ -55,6 +60,7 @@ public class MarketHomeAdapter extends FragmentPagerAdapter
 
   public void onPageScrollStateChanged(int position)
   {
+	  
   }
 
   public void onPageScrolled(int paramInt1, float paramFloat, int paramInt2)

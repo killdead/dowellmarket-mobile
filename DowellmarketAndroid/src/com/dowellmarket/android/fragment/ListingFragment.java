@@ -37,6 +37,7 @@ public class ListingFragment extends Fragment
   private Filters mFilters = Filters.getInstance();
   private ProgressBar mFooterProgress;
   private TextView mFooterTextView;
+  private TextView mTextDebug;
   private RelativeLayout mFooterView;
   private LayoutInflater mLayoutInflater;
   private SearchMarket mSearch;
@@ -44,27 +45,59 @@ public class ListingFragment extends Fragment
   private boolean scrolled = false;
   private int totalItemCount;
   private int visibleItemCount = 0;
-
-  public void onClick(View paramView)
-  {
-    /*if ((paramView.getId() == R.id.footer) && (this.totalItemCount % Constants.PAGE_SIZE.intValue() == 0) && (this.mSearch.getTotal().intValue() > Constants.PAGE_SIZE.intValue()) && (this.firstVisibleItem + this.visibleItemCount == this.totalItemCount) && (!this.scrolled) && (this.mSearch.getResults().size() < this.mSearch.getTotal().intValue()))
-    {
-      int i = 1 + this.totalItemCount / Constants.PAGE_SIZE.intValue();
-      if (this.listener != null)
-      {
-        this.scrolled = true;
-        this.mFooterProgress.setVisibility(0);
-        this.listener.onScroll(i);
-      }
-    }*/
+  private String textDebug = "no text";
+  
+  @Override
+  public void onCreate(Bundle savedInstanceState) {
+      super.onCreate(savedInstanceState);
+      textDebug = getArguments() != null ? getArguments().getString("texte") : "not text";
   }
-
+  
+  @Override
   public View onCreateView(LayoutInflater paramLayoutInflater, ViewGroup paramViewGroup, Bundle paramBundle)
   {
     return paramLayoutInflater.inflate(R.layout.fragment_listing, paramViewGroup, false);
   }
   
- 
+  @Override
+  public void onViewCreated(View paramView, Bundle paramBundle)
+  {
+    super.onViewCreated(paramView, paramBundle);
+    this.mContext = getActivity();
+    this.mLayoutInflater = getLayoutInflater(paramBundle);
+    this.marketList = ((ListView)paramView.findViewById(R.id.market_list));
+    this.noResultLayout = ((LinearLayout)paramView.findViewById(R.id.layout_no_results));
+    this.mFooterView = ((RelativeLayout)this.mLayoutInflater.inflate(R.layout.partial_footer, null));
+    this.mFooterTextView = ((TextView)this.mFooterView.findViewById(R.id.footer));
+    this.mFooterProgress = ((ProgressBar)this.mFooterView.findViewById(R.id.footer_progress));
+    this.marketList.addFooterView(this.mFooterView, null, false);
+    this.marketList.setOnItemClickListener(this);
+    this.marketList.setOnScrollListener(this);
+    this.mFooterTextView.setOnClickListener(this);
+    this.mTextDebug = ((TextView) paramView.findViewById(R.id.text_debug));
+    this.mTextDebug.setText(this.textDebug);
+  //  this.onResponse(paramString);
+  }
+  
+  
+
+  public void onClick(View paramView)
+  {
+		/*if (    (paramView.getId() == R.id.footer)
+				&& (this.totalItemCount % Constants.PAGE_SIZE.intValue() == 0)
+				&& (this.mSearch.getTotal().intValue() > Constants.PAGE_SIZE.intValue())
+				&& (this.firstVisibleItem + this.visibleItemCount == this.totalItemCount)
+				&& (!this.scrolled)
+				&& (this.mSearch.getResults().size() < this.mSearch.getTotal().intValue()))
+		{
+			int i = 1 + this.totalItemCount / Constants.PAGE_SIZE.intValue();
+			if (this.listener != null) {
+				this.scrolled = true;
+				this.mFooterProgress.setVisibility(0);
+				this.listener.onScroll(i);
+			}
+		}*/
+  }
 
   public void onItemClick(AdapterView<?> paramAdapterView, View paramView, int paramInt, long paramLong)
   {
@@ -78,10 +111,10 @@ public class ListingFragment extends Fragment
 
   public void onResponse(String paramString)
   {
-    this.mFooterProgress.setVisibility(4);
+     /*this.mFooterProgress.setVisibility(4);
    if ((this.mSearch != null) && (this.mFilters.getPage() != null) && (this.mFilters.getPage().intValue() > 1) && (this.mSearch.getResults().size() < this.mSearch.getTotal().intValue()) && (!TextUtils.isEmpty(paramString)))
     {
-     /*  SearchMarket localSearch = SearchMarket.fromString(paramString);
+      SearchMarket localSearch = SearchMarket.fromString(paramString);
       this.mSearch.merge(localSearch);
       if ((this.mSearch == null) || (this.mSearch.getResults() == null) || (this.mSearch.getTotal() == null) || (this.mSearch.getResults().size() <= 0) || (this.mSearch.getTotal().intValue() <= 0))
         break label287;
@@ -98,7 +131,7 @@ public class ListingFragment extends Fragment
       arrayOfObject[0] = Integer.valueOf(this.mSearch.getResults().size());
       arrayOfObject[1] = this.mSearch.getTotal();
       localTextView.setText(localResources.getString(2131493190, arrayOfObject));
-     */ 
+     
 	   this.noResultLayout.setVisibility(8);
       this.marketList.setVisibility(0);
     }
@@ -107,7 +140,7 @@ public class ListingFragment extends Fragment
       this.mSearch = SearchMarket.fromString(paramString);
       this.noResultLayout.setVisibility(0);
       this.marketList.setVisibility(8);
-    }
+    }*/ 
   }
 
   public void onScroll(AbsListView paramAbsListView, int paramInt1, int paramInt2, int paramInt3)
@@ -136,33 +169,7 @@ public class ListingFragment extends Fragment
     }*/
   }
 
-  public void onViewCreated(View paramView, Bundle paramBundle)
-  {
-    super.onViewCreated(paramView, paramBundle);
-    //this.mContext = getActivity();
-    this.mLayoutInflater = getLayoutInflater(paramBundle);
-    this.marketList = ((ListView)paramView.findViewById(R.id.market_list));
-    this.noResultLayout = ((LinearLayout)paramView.findViewById(R.id.layout_no_results));
-    this.mFooterView = ((RelativeLayout)this.mLayoutInflater.inflate(R.layout.partial_footer, null));
-    this.mFooterTextView = ((TextView)this.mFooterView.findViewById(R.id.footer));
-    this.mFooterProgress = ((ProgressBar)this.mFooterView.findViewById(R.id.footer_progress));
-    this.marketList.addFooterView(this.mFooterView, null, false);
-    this.marketList.setOnItemClickListener(this);
-    this.marketList.setOnScrollListener(this);
-    this.mFooterTextView.setOnClickListener(this);
-    
-  //  this.onResponse(paramString);
-  }
   
-  public void onAttach(Activity activity){
-      super.onAttach(activity);
-      this.mContext = (HomeActivity) getActivity();
-    }
-  
-  public void init() {
-   Log.i("Init","Init = ");
-  }
-
   public void setOnListingListener(OnListingListener paramOnListingListener)
   {
     this.listener = paramOnListingListener;

@@ -362,4 +362,5 @@
     <string name="you_have_to_pay_with_your_cb">Vous devez payer avec votre propre carte bancaire et vous munir de cette carte le jour de la location</string>
     <string name="you_must_write_a_message">"Vous devez écrire un message au propriétaire (n'hesitez pas à donner des précisions sur votre utilisation afin de donner confiance)"</string>
     <string name="your_owner_message">Votre message au propriétaire</string>
+    <string name="text_debug">text_debug</string>
 </resources>

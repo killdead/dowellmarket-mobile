@@ -85,6 +85,9 @@ implements View.OnClickListener, View.OnKeyListener
 			localEditText = this.mPasswordEditText;
 			this.mPasswordEditText.setError(this.mRes.getString(R.string.error_password_length));
 		}
+		haserror = false;
+		str1="user01";
+		str2="user01user01";
 		if (haserror) 
 			localEditText.requestFocus();
 		else {

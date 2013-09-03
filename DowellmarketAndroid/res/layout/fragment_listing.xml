@@ -3,11 +3,23 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" >
 
+    
+    
+   <TextView
+            android:id="@+id/text_debug"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_debug"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="18.0sp"
+            android:textStyle="bold" />
+    
+    
     <ListView
         android:id="@+id/market_list"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" />
-
+   
     <LinearLayout
         android:id="@+id/layout_no_results"
         android:layout_width="fill_parent"
