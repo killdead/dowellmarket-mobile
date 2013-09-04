@@ -24,7 +24,7 @@ public class HomeActivity extends BaseFragmentActivity {
 	    this.mViewPager = ((ViewPager)findViewById(R.id.homePager));
 	    this.mMarketHomeAdapter = new MarketHomeAdapter(this, this.mViewPager);
 	   
-	    this.mMarketHomeAdapter.addTab(getSupportActionBar().newTab().setText(R.string.navigation_category_house), HouseListingFragment.class, null);
+	    this.mMarketHomeAdapter.addTab(getSupportActionBar().newTab().setText(R.string.navigation_category_house), CategoryListingFragment.class, null);
 	   
 
 	    this.mMarketHomeAdapter.addTab(getSupportActionBar().newTab().setText(R.string.navigation_category_apartment), CategoryListingFragment.class, null);
@@ -37,8 +37,10 @@ public class HomeActivity extends BaseFragmentActivity {
 		    
 	    this.mViewPager.setAdapter(this.mMarketHomeAdapter);
 	    getSupportActionBar().setNavigationMode(2);
+	    
+	    
 	  }
-
+	
 
 	/*@Override
 	protected void onCreate(Bundle savedInstanceState) {

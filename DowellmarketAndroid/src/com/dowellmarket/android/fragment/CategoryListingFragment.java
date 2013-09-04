@@ -3,6 +3,7 @@ package com.dowellmarket.android.fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,16 +17,18 @@ import android.widget.TextView;
 
 import com.dowellmarket.android.R;
 import com.dowellmarket.android.adapter.MarketListAdapter;
+import com.dowellmarket.android.http.Api;
+import com.dowellmarket.android.http.ApiResponse;
 import com.dowellmarket.android.model.Filters;
 import com.dowellmarket.android.model.SearchMarket;
 
 public class CategoryListingFragment extends Fragment
-  implements AdapterView.OnItemClickListener, AbsListView.OnScrollListener, View.OnClickListener
+implements  ApiResponse.OnApiResponseListener, AdapterView.OnItemClickListener, AbsListView.OnScrollListener, View.OnClickListener
 {
  private ListView marketList;
  private MarketListAdapter marketListAdapter;
   
-  
+  private Api mApi;
   private int firstVisibleItem;
   private OnListingListener listener;
   private Context mContext;
@@ -42,7 +45,8 @@ public class CategoryListingFragment extends Fragment
   
   @Override
   public void onCreate(Bundle savedInstanceState) {
-      super.onCreate(savedInstanceState);     
+      super.onCreate(savedInstanceState);  
+      
   }
   
   @Override
@@ -55,7 +59,7 @@ public class CategoryListingFragment extends Fragment
   public void onViewCreated(View paramView, Bundle paramBundle)
   {
     super.onViewCreated(paramView, paramBundle);
-    this.mContext = getActivity();
+    this.mContext =  getActivity();
     this.mLayoutInflater = getLayoutInflater(paramBundle);
     this.marketList = ((ListView)paramView.findViewById(R.id.market_list));
     this.noResultLayout = ((LinearLayout)paramView.findViewById(R.id.layout_no_results));
@@ -66,7 +70,8 @@ public class CategoryListingFragment extends Fragment
     this.marketList.setOnItemClickListener(this);
     this.marketList.setOnScrollListener(this);
     this.mFooterTextView.setOnClickListener(this);
-   // 
+    this.mApi = new Api(this.mContext, this);
+    processSearch();
   }
   
   
@@ -101,6 +106,7 @@ public class CategoryListingFragment extends Fragment
 
   public void processSearch()
   {
+	  Log.i("CategoryListing Process Search","Request Search");
      this.mFooterProgress.setVisibility(4);
   /* if ((this.mSearch != null) && (this.mFilters.getPage() != null) && (this.mFilters.getPage().intValue() > 1) && (this.mSearch.getResults().size() < this.mSearch.getTotal().intValue()) && (!TextUtils.isEmpty(paramString)))
     {
@@ -127,7 +133,9 @@ public class CategoryListingFragment extends Fragment
     }
    else
     {*/
-      this.mSearch = SearchMarket.fromString(this.mFilters.getCategory());
+      this.mApi.getSearch();
+      
+      
       this.noResultLayout.setVisibility(0);
       this.marketList.setVisibility(8);
     //} 
@@ -171,4 +179,34 @@ public class CategoryListingFragment extends Fragment
 
     public abstract void onScroll(int paramInt);
   }
+
+@Override
+public void onApiRequestFailure(int RequestCode, int statusCode,
+		String httpError, String appError) {
+	Log.i("CategoryListing","Request failure");
+	
+}
+
+@Override
+public void onApiRequestFinish(int RequestCode) {
+	// TODO Auto-generated method stub
+	Log.i("CategoryListing onApiRequestFinish","start finish");
+}
+
+@Override
+public void onApiRequestStart(int RequestCode) {
+	// TODO Auto-generated method stub
+	Log.i("CategoryListing onApiRequestStart","start request");
+	
+}
+
+@Override
+public void onApiRequestSuccess(int RequestCode, int statusCode,
+		String paramString) {
+	// TODO Auto-generated method stub
+	Log.i("CategoryListing onApiRequestSuccess"," paramString = "+paramString);
+	this.mSearch = SearchMarket.fromString(paramString);
+	 this.marketListAdapter = new MarketListAdapter(this.mContext, this.mSearch.getResults());
+     this.marketList.setAdapter(this.marketListAdapter);
+}
 }

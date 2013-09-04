@@ -60,11 +60,16 @@ public class Filters
   public RequestParams getRequestParam() {
 	
 	  
-	    if (!TextUtils.isEmpty(this.marketCategory))
+	  HashMap<String, String> Map = new HashMap<String, String>();
+  	Map.put("method", "market.get_markets");  
+	  
+	  if (!TextUtils.isEmpty(this.marketCategory))
 	    {
-	    	HashMap<String, String> paramMap = new HashMap<String, String>();
-	    	paramMap.put("method", "market.get_markets");
+	    	
+		  Map.put("context", this.marketCategory); 
 	    }
+	    
+	  requestParams = new RequestParams(Map);
 	    
 	  
 	  return requestParams;

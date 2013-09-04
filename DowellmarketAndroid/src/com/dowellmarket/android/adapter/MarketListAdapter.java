@@ -47,7 +47,7 @@ public class MarketListAdapter extends BaseAdapter
 
   public long getItemId(int paramInt)
   {
-    return ((Market)this.markets.get(paramInt)).getId().longValue();
+    return ((Market)this.markets.get(paramInt)).getGuid();
   }
 
   public View getView(int paramInt, View paramView, ViewGroup paramViewGroup)
@@ -56,7 +56,7 @@ public class MarketListAdapter extends BaseAdapter
     if (paramView == null)
     {
       localViewHolder = new ViewHolder();
-      paramView = this.mInflater.inflate(2130903107, null);
+     // paramView = this.mInflater.inflate(2130903107, null);
  //   ViewHolder.access$102(localViewHolder, (ImageView)paramView.findViewById(2131230814));
        /* ViewHolder.access$202(localViewHolder, (ImageView)paramView.findViewById(2131230973));
       ViewHolder.access$302(localViewHolder, (ImageView)paramView.findViewById(2131230894));
@@ -140,7 +140,7 @@ public class MarketListAdapter extends BaseAdapter
 
   private class ViewHolder
   {
-   private TextView availabilityStatus;
+   private TextView guid;
  /*    private ImageView call;
     private ImageView carPhoto;
     private TextView city;
