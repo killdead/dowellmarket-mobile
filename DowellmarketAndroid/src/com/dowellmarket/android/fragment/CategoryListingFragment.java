@@ -19,10 +19,10 @@ import com.dowellmarket.android.adapter.MarketListAdapter;
 import com.dowellmarket.android.model.Filters;
 import com.dowellmarket.android.model.SearchMarket;
 
-public class ListingFragment extends Fragment
+public class CategoryListingFragment extends Fragment
   implements AdapterView.OnItemClickListener, AbsListView.OnScrollListener, View.OnClickListener
 {
-  private ListView marketList;
+ private ListView marketList;
  private MarketListAdapter marketListAdapter;
   
   
@@ -66,7 +66,7 @@ public class ListingFragment extends Fragment
     this.marketList.setOnItemClickListener(this);
     this.marketList.setOnScrollListener(this);
     this.mFooterTextView.setOnClickListener(this);
-  //  this.onResponse(paramString);
+   // 
   }
   
   
@@ -99,10 +99,10 @@ public class ListingFragment extends Fragment
     }*/
   }
 
-  public void onResponse(String paramString)
+  public void processSearch()
   {
-     /*this.mFooterProgress.setVisibility(4);
-   if ((this.mSearch != null) && (this.mFilters.getPage() != null) && (this.mFilters.getPage().intValue() > 1) && (this.mSearch.getResults().size() < this.mSearch.getTotal().intValue()) && (!TextUtils.isEmpty(paramString)))
+     this.mFooterProgress.setVisibility(4);
+  /* if ((this.mSearch != null) && (this.mFilters.getPage() != null) && (this.mFilters.getPage().intValue() > 1) && (this.mSearch.getResults().size() < this.mSearch.getTotal().intValue()) && (!TextUtils.isEmpty(paramString)))
     {
       SearchMarket localSearch = SearchMarket.fromString(paramString);
       this.mSearch.merge(localSearch);
@@ -126,11 +126,11 @@ public class ListingFragment extends Fragment
       this.marketList.setVisibility(0);
     }
    else
-    {
-      this.mSearch = SearchMarket.fromString(paramString);
+    {*/
+      this.mSearch = SearchMarket.fromString(this.mFilters.getCategory());
       this.noResultLayout.setVisibility(0);
       this.marketList.setVisibility(8);
-    }*/ 
+    //} 
   }
 
   public void onScroll(AbsListView paramAbsListView, int paramInt1, int paramInt2, int paramInt3)

@@ -8,6 +8,7 @@ import android.content.Context;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.dowellmarket.android.model.Filters;
 import com.dowellmarket.android.model.Settings;
 import com.dowellmarket.android.model.User;
 import com.loopj.android.http.AsyncHttpClient;
@@ -15,7 +16,7 @@ import com.loopj.android.http.RequestParams;
 
 public class Api
 {
-  private static final String BASE_URL = "http://192.168.0.14/elgg/services/api/rest/json?";
+  private static final String BASE_URL = "http://10.89.4.155/elgg/services/api/rest/json?";
   private static final String METHOD_GET = "GET";
   private static final String METHOD_POST = "POST";
   private static final String METHOD_PUT = "PUT";
@@ -50,6 +51,7 @@ public class Api
   private static final String SUB_PATH_REVIEWS = "reviews";
   private static AsyncHttpClient client = new AsyncHttpClient();
   private ApiResponse mApiResponse;
+  private static String USER_AUTH_TOKEN;
   private final Context mContext;
   private final ApiResponse.OnApiResponseListener mListener;
 
@@ -59,39 +61,30 @@ public class Api
     this.mListener = paramOnApiResponseListener;
   }
 
-  private static void _get(Context paramContext, String paramString, RequestParams paramRequestParams, ApiResponse paramApiResponse)
+  private static void _get(Context paramContext, RequestParams mRequestParams, ApiResponse paramApiResponse)
   {
-    String str = _getAbsoluteUrl(paramString);
+    String str = _getAbsoluteUrl();
     _setHeaders();
     _setStartMessage(str, "GET");
-    client.get(paramContext, str, paramRequestParams, paramApiResponse);
-  }
-
-  private static String _getAbsoluteUrl(String paramString)
-  {
-    return BASE_URL + paramString;
-  }
-
-  private static void _post(Context paramContext, String paramString1, String paramString2, ApiResponse paramApiResponse)
-  {
-    String str = _getAbsoluteUrl(paramString1);
-    _setHeaders();
-    _setStartMessage(str, "POST");
-    try
+    
+    if(USER_AUTH_TOKEN != "")
     {
-      client.post(paramContext, str, new StringEntity(paramString2, "UTF-8"), "application/json", paramApiResponse);
-      return;
+    	mRequestParams.put("auth_token", USER_AUTH_TOKEN);
     }
-    catch (UnsupportedEncodingException localUnsupportedEncodingException)
-    {
-      while (true)
-        localUnsupportedEncodingException.printStackTrace();
-    }
+    
+    
+    client.get(paramContext, str, mRequestParams, paramApiResponse);
   }
 
-  private static void _put(Context paramContext, String paramString1, String paramString2, ApiResponse paramApiResponse)
+  private static String _getAbsoluteUrl()
   {
-    String str = _getAbsoluteUrl(paramString1);
+    return BASE_URL;
+  }
+
+
+  private static void _put(Context paramContext, String paramString2, ApiResponse paramApiResponse)
+  {
+    String str = _getAbsoluteUrl();
     _setHeaders();
     _setStartMessage(str, "PUT");
     try
@@ -108,8 +101,9 @@ public class Api
 
   private static void _setHeaders()
   {
-    client.addHeader("HTTP_X_VL_AUTHORIZATION", "cf4d2f5591763483bf1f258c5820e411");
+    //client.addHeader("HTTP_X_VL_AUTHORIZATION", "cf4d2f5591763483bf1f258c5820e411");
     client.addHeader("Accept-Charset", "UTF-8");
+    
     Settings localSettings = Settings.getInstance();
    
   }
@@ -123,33 +117,67 @@ public class Api
   {
     return new ApiResponse(this.mContext, paramInt, this.mListener);
   }
+  
+  public String getBaseUrl() {
+  return BASE_URL;
+  }
+  
+  
+  
+  private static void _post(Context paramContext,RequestParams mRequestParams, ApiResponse paramApiResponse) {
+		 
+	    _setHeaders();
+	    _setStartMessage(BASE_URL, "POST");
+	    
+	    if(USER_AUTH_TOKEN != "")
+	    {
+	    	mRequestParams.put("auth_token", USER_AUTH_TOKEN);
+	    }
+	    
+	    try
+	    {
+	      client.post(paramContext, BASE_URL,mRequestParams, paramApiResponse);
+	      return;
+	    }
+	    catch (Exception localUnsupportedEncodingException)
+	    {
+	     
+	        localUnsupportedEncodingException.printStackTrace();
+	    }
+	
+}
+
+public String getUserAuthToken() {
+	return USER_AUTH_TOKEN;
+}
+
+public void setUserAuthToken(String auth_token) {
+	USER_AUTH_TOKEN = auth_token;
+}
+  
+  
+  
   public void postSession(User paramUser)
   {
     this.mApiResponse = newApiResponse(REQUEST_CODE_USER_SIGN_IN);
    
-    _post(this.mContext, "", paramUser.getLoginRequestParams(), this.mApiResponse);
+    _post(this.mContext, paramUser.getLoginRequestParams(), this.mApiResponse);
   }
+  
+  
+  
+  
+  public void getSearch()
+  {
+  //  String str = "category/" + Filters.getInstance().toUrl();
+    
+    RequestParams rp = Filters.getInstance().getRequestParam();
+    
+    this.mApiResponse = newApiResponse(10);
+    _get(this.mContext, rp, this.mApiResponse);
+  }
+  
 /*
-  public void getCar(Long paramLong)
-  {
-    String str = "cars/" + paramLong.toString();
-    this.mApiResponse = newApiResponse(5);
-    _get(this.mContext, str, null, this.mApiResponse);
-  }
-
-  public void getCarAvailability(Long paramLong)
-  {
-    String str = "cars/" + paramLong.toString() + "/" + "availability" + Filters.getInstance().toUrl();
-    this.mApiResponse = newApiResponse(6);
-    _get(this.mContext, str, null, this.mApiResponse);
-  }
-
-  public void getCarBookingAuthorization(Long paramLong)
-  {
-    String str = "cars/" + paramLong.toString() + "/" + "booking_authorization";
-    this.mApiResponse = newApiResponse(7);
-    _get(this.mContext, str, null, this.mApiResponse);
-  }
 
   public int getLoadingMessageRes()
   {
@@ -179,31 +207,7 @@ public class Api
     _get(this.mContext, "pictures/upload_settings", null, this.mApiResponse);
   }
 
-  public void getProfile()
-  {
-    this.mApiResponse = newApiResponse(2);
-    _get(this.mContext, "profile", null, this.mApiResponse);
-  }
-
-  public void getProfileAuthToken()
-  {
-    this.mApiResponse = newApiResponse(13);
-    _get(this.mContext, "profile/auth_token", null, this.mApiResponse);
-  }
-
-  public void getSearch()
-  {
-    String str = "search/" + Filters.getInstance().toUrl();
-    this.mApiResponse = newApiResponse(10);
-    _get(this.mContext, str, null, this.mApiResponse);
-  }
-
-  public void getUserReviews(Integer paramInteger)
-  {
-    String str = "users/" + paramInteger.toString() + "/" + "reviews";
-    this.mApiResponse = newApiResponse(4);
-    _get(this.mContext, str, null, this.mApiResponse);
-  }
+ 
 
   public void interruptRequests()
   {
@@ -217,58 +221,16 @@ public class Api
     _post(this.mContext, "cars", str, this.mApiResponse);
   }
 
-  public void postCarPreBook(Long paramLong, Payment paramPayment)
-  {
-    String str = "cars/" + paramLong.toString() + "/" + "pre_book";
-    this.mApiResponse = newApiResponse(9);
-    _post(this.mContext, str, paramPayment.toString(), this.mApiResponse);
-  }
-
-  public void postCarRequest(Long paramLong, String paramString)
-  {
-    String str = "cars/" + paramLong.toString() + "/" + "request";
-    this.mApiResponse = newApiResponse(8);
-    _post(this.mContext, str, paramString, this.mApiResponse);
-  }
-
-  public void postDevice(String paramString)
-  {
-    String str = "{\"device\": {\"token\":\"" + paramString + "\"}}";
-    this.mApiResponse = newApiResponse(15);
-    _post(this.mContext, "devices", str, this.mApiResponse);
-  }
-
+  
   public void postRegistration(User paramUser)
   {
     String str = "{\"user\":" + paramUser.toString() + "}";
     this.mApiResponse = newApiResponse(12);
     _post(this.mContext, "registrations", str, this.mApiResponse);
   }
+  */
 
 
 
-  public void putProfile(User paramUser)
-  {
-    String str = "{\"user\":" + paramUser.toString() + "}";
-    this.mApiResponse = newApiResponse(3);
-    _put(this.mContext, "profile", str, this.mApiResponse);
-  }*/
 
-private void _post(Context paramContext, String paramString1,
-		RequestParams mRequestParams, ApiResponse paramApiResponse) {
-	 
-	    _setHeaders();
-	    _setStartMessage(BASE_URL, "POST");
-	    try
-	    {
-	      client.post(mContext, BASE_URL,mRequestParams, paramApiResponse);
-	      return;
-	    }
-	    catch (Exception localUnsupportedEncodingException)
-	    {
-	     
-	        localUnsupportedEncodingException.printStackTrace();
-	    }
-	
-}
 }

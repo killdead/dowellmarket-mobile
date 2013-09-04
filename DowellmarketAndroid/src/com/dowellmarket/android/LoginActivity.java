@@ -33,7 +33,9 @@ implements View.OnClickListener, View.OnKeyListener
 	
 	public void onCreate(Bundle paramBundle)
 	  {
-	    super.onCreate(paramBundle, R.layout.activity_login);
+		super.onCreate(paramBundle, R.layout.activity_login);
+		Log.i("Loginactivity", "Test loginactivity debug");
+		Log.i("LoginActivity","ApiUrl = "+this.mApi.getBaseUrl());		
 	    this.mSettings = Settings.getInstance();
 	    this.mLoginEditText = ((EditText)findViewById(R.id.login));
 	    this.mPasswordEditText = ((EditText)findViewById(R.id.password));
@@ -115,6 +117,7 @@ implements View.OnClickListener, View.OnKeyListener
 			this.mIntent = new Intent(this.mContext, HomeActivity.class);
 			// this.mIntent.putExtra("user", paramString);
 			this.mContext.startActivity(this.mIntent);
+			this.mApi.setUserAuthToken(localResponse.result);
 			setResult(-1);
 			finish();
 			break;

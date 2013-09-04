@@ -6,7 +6,8 @@ import android.support.v4.view.ViewPager;
 
 import com.dowellmarket.android.R;
 import com.dowellmarket.android.adapter.MarketHomeAdapter;
-import com.dowellmarket.android.fragment.ListingFragment;
+import com.dowellmarket.android.fragment.CategoryListingFragment;
+import com.dowellmarket.android.fragment.HouseListingFragment;
 
 
 public class HomeActivity extends BaseFragmentActivity {
@@ -22,21 +23,17 @@ public class HomeActivity extends BaseFragmentActivity {
 	    super.onCreate(paramBundle, R.layout.activity_home);
 	    this.mViewPager = ((ViewPager)findViewById(R.id.homePager));
 	    this.mMarketHomeAdapter = new MarketHomeAdapter(this, this.mViewPager);
-	    Bundle category = new Bundle();
-	    category.putString("category","navigation_category_house");
-	    this.mMarketHomeAdapter.addTab(getSupportActionBar().newTab().setText(R.string.navigation_category_house), ListingFragment.class, category);
 	   
-	    category = new Bundle();
-	    category.putString("category","navigation_category_apartment");
-	    this.mMarketHomeAdapter.addTab(getSupportActionBar().newTab().setText(R.string.navigation_category_apartment), ListingFragment.class, category);
+	    this.mMarketHomeAdapter.addTab(getSupportActionBar().newTab().setText(R.string.navigation_category_house), HouseListingFragment.class, null);
+	   
+
+	    this.mMarketHomeAdapter.addTab(getSupportActionBar().newTab().setText(R.string.navigation_category_apartment), CategoryListingFragment.class, null);
 	    
-	    category = new Bundle();
-	    category.putString("category","navigation_category_wallet");
-	    this.mMarketHomeAdapter.addTab(getSupportActionBar().newTab().setText(R.string.navigation_category_wallet), ListingFragment.class,  category);
+	    
+	    this.mMarketHomeAdapter.addTab(getSupportActionBar().newTab().setText(R.string.navigation_category_wallet), CategoryListingFragment.class,  null);
 	 
-	    category = new Bundle();
-	    category.putString("category","navigation_category_other");
-	    this.mMarketHomeAdapter.addTab(getSupportActionBar().newTab().setText(R.string.navigation_category_other), ListingFragment.class, category);
+	 
+	    this.mMarketHomeAdapter.addTab(getSupportActionBar().newTab().setText(R.string.navigation_category_other), CategoryListingFragment.class, null);
 		    
 	    this.mViewPager.setAdapter(this.mMarketHomeAdapter);
 	    getSupportActionBar().setNavigationMode(2);
