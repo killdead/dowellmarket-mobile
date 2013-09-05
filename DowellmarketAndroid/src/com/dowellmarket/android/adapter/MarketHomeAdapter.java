@@ -58,7 +58,7 @@ public class MarketHomeAdapter extends FragmentPagerAdapter
   {
 	Log.i("MarketHomeAdapter","getiem Position = "+position+" tabs size = "+mTabs.size());
     TabInfo localTabInfo = (TabInfo)this.mTabs.get(position);
-    return Fragment.instantiate(this.mContext, localTabInfo.clss.getName(), localTabInfo.args);
+    return Fragment.instantiate(this.mContext, localTabInfo.clss.getName(), null);
   }
 
   public void onPageScrollStateChanged(int position)

@@ -21,6 +21,7 @@ import com.dowellmarket.android.http.Api;
 import com.dowellmarket.android.http.ApiResponse;
 import com.dowellmarket.android.model.Filters;
 import com.dowellmarket.android.model.SearchMarket;
+import android.content.res.Resources;
 
 public class CategoryListingFragment extends Fragment
 implements  ApiResponse.OnApiResponseListener, AdapterView.OnItemClickListener, AbsListView.OnScrollListener, View.OnClickListener
@@ -108,7 +109,11 @@ implements  ApiResponse.OnApiResponseListener, AdapterView.OnItemClickListener, 
   {
 	  Log.i("CategoryListing Process Search","Request Search");
      this.mFooterProgress.setVisibility(4);
-  /* if ((this.mSearch != null) && (this.mFilters.getPage() != null) && (this.mFilters.getPage().intValue() > 1) && (this.mSearch.getResults().size() < this.mSearch.getTotal().intValue()) && (!TextUtils.isEmpty(paramString)))
+     this.mApi.getSearch();
+     
+    
+     
+     /* if ((this.mSearch != null) && (this.mFilters.getPage() != null) && (this.mFilters.getPage().intValue() > 1) && (this.mSearch.getResults().size() < this.mSearch.getTotal().intValue()) && (!TextUtils.isEmpty(paramString)))
     {
       SearchMarket localSearch = SearchMarket.fromString(paramString);
       this.mSearch.merge(localSearch);
@@ -133,11 +138,10 @@ implements  ApiResponse.OnApiResponseListener, AdapterView.OnItemClickListener, 
     }
    else
     {*/
-      this.mApi.getSearch();
       
       
-      this.noResultLayout.setVisibility(0);
-      this.marketList.setVisibility(8);
+      
+      
     //} 
   }
 
@@ -203,10 +207,25 @@ public void onApiRequestStart(int RequestCode) {
 @Override
 public void onApiRequestSuccess(int RequestCode, int statusCode,
 		String paramString) {
-	// TODO Auto-generated method stub
 	Log.i("CategoryListing onApiRequestSuccess"," paramString = "+paramString);
 	this.mSearch = SearchMarket.fromString(paramString);
+	
+ if(this.mSearch != null) {
 	 this.marketListAdapter = new MarketListAdapter(this.mContext, this.mSearch.getResults());
      this.marketList.setAdapter(this.marketListAdapter);
+    	 TextView localTextView = this.mFooterTextView;
+         Resources localResources = this.mContext.getResources();
+         Object[] arrayOfObject = new Object[2];
+         arrayOfObject[0] = Integer.valueOf(this.mSearch.getResults().size());
+         arrayOfObject[1] = this.mSearch.getTotal();
+         localTextView.setText(localResources.getString(R.string.search_results, arrayOfObject));
+    	 this.noResultLayout.setVisibility(8);
+         this.marketList.setVisibility(0);
+     }
+     else
+     {
+    	 this.noResultLayout.setVisibility(0);
+         this.marketList.setVisibility(8);
+     }
 }
 }

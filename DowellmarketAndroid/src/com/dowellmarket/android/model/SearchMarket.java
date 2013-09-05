@@ -20,7 +20,12 @@ public class SearchMarket extends Model
 
   public Integer getTotal()
   {
-    return Integer.valueOf(this.total);
+    return this.result.size();
+  }
+  
+  public Integer getSize() {
+  
+	return this.result.size();
   }
 
   public void merge(SearchMarket paramSearch)
