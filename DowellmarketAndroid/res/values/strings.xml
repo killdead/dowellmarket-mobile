@@ -246,7 +246,7 @@
     <string name="phone_number_title">Téléphone</string>
     <string name="placeholder_address">Adresse</string>
     <string name="placeholder_availability">Disponibilité</string>
-    <string name="placeholder_car_title">Nom de la voiture</string>
+    <string name="placeholder_market_name">Titre de l\'annonce</string>
     <string name="placeholder_city">(Ville)</string>
     <string name="placeholder_comment">Le commentaire ce trouve ici.</string>
     <string name="placeholder_count">(nb)</string>
@@ -269,7 +269,7 @@
     <string name="placeholder_nb_reviews">nb évaluations</string>
     <string name="placeholder_none">none</string>
     <string name="placeholder_option">option</string>
-    <string name="placeholder_price">nb€</string>
+    <string name="placeholder_price">price €</string>
     <string name="placeholder_register_since">Inscrit depuis le 10/12/2012</string>
     <string name="placeholder_response_rates_average">nb%</string>
     <string name="placeholder_reviews">Voir les nb évaluations</string>
@@ -363,4 +363,5 @@
     <string name="you_must_write_a_message">"Vous devez écrire un message au propriétaire (n'hesitez pas à donner des précisions sur votre utilisation afin de donner confiance)"</string>
     <string name="your_owner_message">Votre message au propriétaire</string>
     <string name="text_debug">text_debug</string>
+    <string name="placeholder_market_guid">(guid)</string>
 </resources>
