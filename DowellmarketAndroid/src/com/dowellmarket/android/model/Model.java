@@ -5,8 +5,7 @@ import com.google.gson.Gson;
 
 public class Model
 {
-	public String method = "method";
-	
+	public String status;
 	
   public static <T> Object fromString(String paramString, Class<T> paramClass)
   {

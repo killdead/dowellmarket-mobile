@@ -40,6 +40,7 @@ public class User extends Model
   private String public_name;
   //private UserStats stats;
   private String tmp_remote_avatar_url;
+  
 
   public static Boolean disconnect(Context paramContext)
   {

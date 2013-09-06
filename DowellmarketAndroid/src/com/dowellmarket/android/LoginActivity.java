@@ -100,10 +100,10 @@ public class LoginActivity extends BaseFragmentActivity
 				  User localUser = new User(); 
 				  localUser.setLogin(str1);
 				  localUser.setPassword(str2); 
-				  localUser.method="auth.gettoken";
+				  //localUser.method="auth.gettoken";
 				  
 				  Log.i("ApiLogin",localUser.toString());
-				  this.mApi.postSession(localUser);
+				  this.mApi.signUser(localUser);
 				 
 			
 			}
@@ -141,10 +141,10 @@ public class LoginActivity extends BaseFragmentActivity
 			  User localUser = new User(); 
 			  localUser.setLogin(str1);
 			  localUser.setPassword(str2); 
-			  localUser.method="auth.gettoken";
+			//  localUser.method="auth.gettoken";
 			  
 			  Log.i("ApiLogin",localUser.toString());
-			  this.mApi.postSession(localUser);
+			  this.mApi.signUser(localUser);
 			 
 		
 		}

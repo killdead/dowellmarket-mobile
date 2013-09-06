@@ -160,7 +160,7 @@ public void setUserAuthToken(String auth_token) {
   
   
   
-  public void postSession(User paramUser)
+  public void signUser(User paramUser)
   {
     this.mApiResponse = newApiResponse(REQUEST_CODE_USER_SIGN_IN);
    
@@ -170,11 +170,11 @@ public void setUserAuthToken(String auth_token) {
   
   
   
-  public void getSearch()
+  public void getSearch(Filters f)
   {
   //  String str = "category/" + Filters.getInstance().toUrl();
     
-    RequestParams rp = Filters.getInstance().getRequestParam();
+    RequestParams rp = f.getRequestParam();
     
     this.mApiResponse = newApiResponse(10);
     _get(this.mContext, rp, this.mApiResponse);
