@@ -13,6 +13,7 @@ import java.util.List;
 import com.dowellmarket.android.R;
 import com.dowellmarket.android.model.Filters;
 import com.dowellmarket.android.model.Market;
+import com.dowellmarket.android.util.Utils;
 
 public class MarketListAdapter extends BaseAdapter
 {
@@ -58,6 +59,8 @@ public class MarketListAdapter extends BaseAdapter
     	convertView = this.mInflater.inflate(R.layout.partial_item_market, null);
       localViewHolder.guid = (TextView)convertView.findViewById(R.id.guid);
       localViewHolder.name = (TextView)convertView.findViewById(R.id.name);
+      localViewHolder.price = (TextView)convertView.findViewById(R.id.price);
+      localViewHolder.city = (TextView)convertView.findViewById(R.id.city);
       convertView.setTag(localViewHolder);
     
     }
@@ -66,6 +69,8 @@ public class MarketListAdapter extends BaseAdapter
     Market m = getItem(position);
     localViewHolder.guid.setText(String.valueOf(m.getGuid()));
     localViewHolder.name.setText(m.getName());
+    localViewHolder.city.setText(m.getCity());
+    localViewHolder.price.setText(Utils.toCurrency(m.getPrice()));
 
    
       return convertView;
@@ -75,5 +80,7 @@ public class MarketListAdapter extends BaseAdapter
   {
    private TextView guid;
    private TextView name;
+   private TextView city;
+   private TextView price;
   }
 }

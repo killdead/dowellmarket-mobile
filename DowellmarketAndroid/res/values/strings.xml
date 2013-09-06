@@ -221,7 +221,7 @@
     <string name="no_description">Description non renseignée</string>
     <string name="no_phone_number">Pas de tel.</string>
     <string name="no_result">Aucun résultat :(</string>
-    <string name="no_results_description">Votre recherche ne propose aucune annonce.</string>
+    <string name="no_results_description">Cette catégorie ne propose aucune annonce.</string>
     <string name="no_reviews">"Pas encore d'évaluation"</string>
     <string name="not_available">"La voiture n'est pas disponible du %1$s %2$s au %3$s %4$s. Pour d'autres dipsoniblités, veuillez sélectionner d'autres dates depuis l'écran de recherche."</string>
     <string name="not_member_register">"Pas encore membre ? M'inscrire"</string>
