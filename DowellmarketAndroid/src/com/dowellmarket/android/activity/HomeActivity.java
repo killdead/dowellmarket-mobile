@@ -6,9 +6,12 @@ import android.support.v4.view.ViewPager;
 
 import com.dowellmarket.android.R;
 import com.dowellmarket.android.adapter.MarketHomeAdapter;
+import com.dowellmarket.android.fragment.ApartementListingFragment;
 import com.dowellmarket.android.fragment.CategoryListingFragment;
 import com.dowellmarket.android.fragment.HouseListingFragment;
 import com.dowellmarket.android.fragment.ListingFragment;
+import com.dowellmarket.android.fragment.OtherListingFragment;
+import com.dowellmarket.android.fragment.WalletListingFragment;
 
 
 public class HomeActivity extends BaseFragmentActivity {
@@ -26,9 +29,9 @@ public class HomeActivity extends BaseFragmentActivity {
 	    this.mMarketHomeAdapter = new MarketHomeAdapter(this, this.mViewPager);
 	   
 	    this.mMarketHomeAdapter.addTab(getSupportActionBar().newTab().setText(R.string.navigation_category_house), HouseListingFragment.class, null);
-	    this.mMarketHomeAdapter.addTab(getSupportActionBar().newTab().setText(R.string.navigation_category_apartment), CategoryListingFragment.class, null);
-	    this.mMarketHomeAdapter.addTab(getSupportActionBar().newTab().setText(R.string.navigation_category_wallet), CategoryListingFragment.class,  null);
-	    this.mMarketHomeAdapter.addTab(getSupportActionBar().newTab().setText(R.string.navigation_category_other), CategoryListingFragment.class, null);
+	    this.mMarketHomeAdapter.addTab(getSupportActionBar().newTab().setText(R.string.navigation_category_apartment), ApartementListingFragment.class, null);
+	    this.mMarketHomeAdapter.addTab(getSupportActionBar().newTab().setText(R.string.navigation_category_wallet), WalletListingFragment.class,  null);
+	    this.mMarketHomeAdapter.addTab(getSupportActionBar().newTab().setText(R.string.navigation_category_other), OtherListingFragment.class, null);
 		    
 	    this.mViewPager.setAdapter(this.mMarketHomeAdapter);
 	    getSupportActionBar().setNavigationMode(2);

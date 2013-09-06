@@ -8,6 +8,6 @@ public class ApartementListingFragment extends CategoryListingFragment {
 	 @Override
 	  public void onCreate(Bundle savedInstanceState) {
 	      super.onCreate(savedInstanceState); 
-	   //   this.mFilters.
+	      this.mFilters.setCategory("appartement");
 	  }
 }
