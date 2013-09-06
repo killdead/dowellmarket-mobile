@@ -109,6 +109,8 @@ implements  ApiResponse.OnApiResponseListener, AdapterView.OnItemClickListener, 
   {
 	  Log.i("CategoryListing Process Search","Request Search");
      this.mFooterProgress.setVisibility(4);
+     this.noResultLayout.setVisibility(8);
+     this.marketList.setVisibility(8);
      this.mApi.getSearch();
      
     
@@ -201,6 +203,12 @@ public void onApiRequestFinish(int RequestCode) {
 public void onApiRequestStart(int RequestCode) {
 	// TODO Auto-generated method stub
 	Log.i("CategoryListing onApiRequestStart","start request");
+	 showProgress(true);
+	
+}
+
+private void showProgress(boolean b) {
+	// TODO Auto-generated method stub
 	
 }
 

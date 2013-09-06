@@ -8,6 +8,7 @@ import android.content.Context;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.dowellmarket.android.R;
 import com.dowellmarket.android.model.Filters;
 import com.dowellmarket.android.model.Settings;
 import com.dowellmarket.android.model.User;
@@ -179,7 +180,7 @@ public void setUserAuthToken(String auth_token) {
     _get(this.mContext, rp, this.mApiResponse);
   }
   
-/*
+
 
   public int getLoadingMessageRes()
   {
@@ -191,31 +192,31 @@ public void setUserAuthToken(String auth_token) {
     case 8:
     case 9:
     default:
-      i = 2131493163; break;
-    case 2: i = 2131493168;break;
+      i = R.string.please_wait; break;
+    case 2: i = R.string.profile_loading;break;
     case 4:  i = 2131493177;break;
     case 5:  i = 2131492922;break;
     case 10:  i = 2131492940;break;
     case 11:  i = 2131493202;break;
-    case 12: i = 2131493205;break;
+    case 12: i = R.string.sign_up_loading;break;
     case 3:  i = 2131493186;break;
     }
   return i;
   }
-
+/*
   public void getPicturesUploadSettings()
   {
     this.mApiResponse = newApiResponse(1);
     _get(this.mContext, "pictures/upload_settings", null, this.mApiResponse);
   }
 
- 
+ */
 
   public void interruptRequests()
   {
     client.cancelRequests(this.mContext, true);
   }
-
+/*
   public void postCarNew(CarNew paramCarNew)
   {
     String str = "{\"car\":" + paramCarNew.toString() + "}";

@@ -364,4 +364,5 @@
     <string name="your_owner_message">Votre message au propriétaire</string>
     <string name="text_debug">text_debug</string>
     <string name="placeholder_market_guid">(guid)</string>
+    <string name="action_sign_in_short2">login user02</string>
 </resources>

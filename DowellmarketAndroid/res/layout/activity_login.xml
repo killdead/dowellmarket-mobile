@@ -44,8 +44,16 @@
         android:layout_below="@+id/password"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="22dp"
-        android:onClick="AttemptLogin"
         android:text="@string/action_sign_in_short" />
+    
+    <Button
+        android:id="@+id/loginbutton2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/loginbutton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="22dp"
+        android:text="@string/action_sign_in_short2" />
 
     <ImageView
         android:id="@+id/logsitelogin"

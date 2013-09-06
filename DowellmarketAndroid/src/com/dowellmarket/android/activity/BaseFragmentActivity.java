@@ -25,7 +25,9 @@ import com.dowellmarket.android.http.ApiResponse;
 import com.dowellmarket.android.model.User;
 
 public class BaseFragmentActivity extends ActionBarActivity 
-implements  ApiResponse.OnApiResponseListener,AdapterView.OnItemClickListener {
+implements  ApiResponse.OnApiResponseListener,AdapterView.OnItemClickListener, ProgressDialogFragment.ProgressDialogFragmentListener
+
+{
   protected boolean actionBarEnabled = true;
   protected Api mApi;
   protected boolean mCancellableProgress = true;
@@ -118,12 +120,12 @@ implements  ApiResponse.OnApiResponseListener,AdapterView.OnItemClickListener {
 
   public void onApiRequestFinish(int RequestCode)
   {
-    //showProgress(false);
+    showProgress(false);
   }
 
   public void onApiRequestStart(int RequestCode)
   {
-    //showProgress(true);
+    showProgress(true);
   }
 
   public void onApiRequestSuccess(int RequestCode, int statusCode, String paramString)
@@ -231,6 +233,13 @@ implements  ApiResponse.OnApiResponseListener,AdapterView.OnItemClickListener {
     }
   }
 
+@Override
+public void onCancel(ProgressDialogFragment paramProgressDialogFragment,
+		int paramInt) {
+	this.mApi.interruptRequests();
+	
+}
+
   /*public boolean onOptionsItemSelected(MenuItem paramMenuItem)
   {
 	  boolean bool = super.onOptionsItemSelected(paramMenuItem); 
@@ -252,7 +261,7 @@ implements  ApiResponse.OnApiResponseListener,AdapterView.OnItemClickListener {
     super.onResume();
   //  com.facebook.Settings.publishInstallAsync(this, this.mRes.getString(2131493040));
   }
-
+*/
   protected void showProgress(boolean paramBoolean)
   {
     if (paramBoolean)
@@ -269,7 +278,7 @@ implements  ApiResponse.OnApiResponseListener,AdapterView.OnItemClickListener {
     {
       this.mProgressDialogFragment.dismissAllowingStateLoss();
     }
-  }*/
+  }
 
  
 }
