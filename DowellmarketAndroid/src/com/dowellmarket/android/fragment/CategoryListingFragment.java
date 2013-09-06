@@ -33,7 +33,7 @@ implements  ApiResponse.OnApiResponseListener, AdapterView.OnItemClickListener, 
   private int firstVisibleItem;
   private OnListingListener listener;
   private Context mContext;
-  private Filters mFilters = Filters.getInstance();
+  protected Filters mFilters = Filters.getInstance();
   private ProgressBar mFooterProgress;
   private TextView mFooterTextView;
   private RelativeLayout mFooterView;
@@ -203,14 +203,10 @@ public void onApiRequestFinish(int RequestCode) {
 public void onApiRequestStart(int RequestCode) {
 	// TODO Auto-generated method stub
 	Log.i("CategoryListing onApiRequestStart","start request");
-	 showProgress(true);
+	 
 	
 }
 
-private void showProgress(boolean b) {
-	// TODO Auto-generated method stub
-	
-}
 
 @Override
 public void onApiRequestSuccess(int RequestCode, int statusCode,
