@@ -33,7 +33,7 @@ implements  ApiResponse.OnApiResponseListener, AdapterView.OnItemClickListener, 
   private int firstVisibleItem;
   private OnListingListener listener;
   private Context mContext;
-  protected Filters mFilters = Filters.getInstance();
+  protected Filters mFilters;
   private ProgressBar mFooterProgress;
   private TextView mFooterTextView;
   private RelativeLayout mFooterView;
@@ -47,6 +47,7 @@ implements  ApiResponse.OnApiResponseListener, AdapterView.OnItemClickListener, 
   @Override
   public void onCreate(Bundle savedInstanceState) {
       super.onCreate(savedInstanceState);  
+      mFilters = new Filters();
       
   }
   
@@ -111,40 +112,8 @@ implements  ApiResponse.OnApiResponseListener, AdapterView.OnItemClickListener, 
      this.mFooterProgress.setVisibility(4);
      this.noResultLayout.setVisibility(8);
      this.marketList.setVisibility(8);
-     this.mApi.getSearch();
+     this.mApi.getSearch(this.mFilters);
      
-    
-     
-     /* if ((this.mSearch != null) && (this.mFilters.getPage() != null) && (this.mFilters.getPage().intValue() > 1) && (this.mSearch.getResults().size() < this.mSearch.getTotal().intValue()) && (!TextUtils.isEmpty(paramString)))
-    {
-      SearchMarket localSearch = SearchMarket.fromString(paramString);
-      this.mSearch.merge(localSearch);
-      if ((this.mSearch == null) || (this.mSearch.getResults() == null) || (this.mSearch.getTotal() == null) || (this.mSearch.getResults().size() <= 0) || (this.mSearch.getTotal().intValue() <= 0))
-        break label287;
-      this.marketListAdapter = new marketListAdapter(this.mContext, this.mSearch.getResults());
-      this.carList.setAdapter(this.carListAdapter);
-      if (this.scrolled)
-      {
-        this.carList.setSelection(this.firstVisibleItem);
-        this.scrolled = false;
-      }
-      TextView localTextView = this.mFooterTextView;
-      Resources localResources = this.mContext.getResources();
-      Object[] arrayOfObject = new Object[2];
-      arrayOfObject[0] = Integer.valueOf(this.mSearch.getResults().size());
-      arrayOfObject[1] = this.mSearch.getTotal();
-      localTextView.setText(localResources.getString(2131493190, arrayOfObject));
-     
-	   this.noResultLayout.setVisibility(8);
-      this.marketList.setVisibility(0);
-    }
-   else
-    {*/
-      
-      
-      
-      
-    //} 
   }
 
   public void onScroll(AbsListView paramAbsListView, int paramInt1, int paramInt2, int paramInt3)
@@ -214,7 +183,7 @@ public void onApiRequestSuccess(int RequestCode, int statusCode,
 	Log.i("CategoryListing onApiRequestSuccess"," paramString = "+paramString);
 	this.mSearch = SearchMarket.fromString(paramString);
 	
- if(this.mSearch != null) {
+ if(this.mSearch != null && this.mSearch.status.equals("0") ) {
 	 this.marketListAdapter = new MarketListAdapter(this.mContext, this.mSearch.getResults());
      this.marketList.setAdapter(this.marketListAdapter);
     	 TextView localTextView = this.mFooterTextView;

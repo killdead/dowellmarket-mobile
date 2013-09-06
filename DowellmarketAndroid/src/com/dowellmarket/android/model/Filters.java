@@ -12,16 +12,9 @@ public class Filters
   private static final String FILTER_MARKET_CATEGORY = "all";
   private String marketCategory;
   private RequestParams requestParams;
-  private Filters()
+  public Filters()
   {
     
-  }
-
-  
-
-  public static Filters getInstance()
-  {
-    return FiltersHolder.instance;
   }
 
  
@@ -75,9 +68,5 @@ public class Filters
 	  return requestParams;
   }
 
-  private static class FiltersHolder
-  {
-    private static final Filters instance = new Filters();
-  }
 }
 

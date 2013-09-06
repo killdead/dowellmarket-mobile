@@ -29,7 +29,7 @@ public class ListingFragment extends Fragment
   private int firstVisibleItem;
   private OnListingListener listener;
   private Context mContext;
-  private Filters mFilters = Filters.getInstance();
+  private Filters mFilters;
   private ProgressBar mFooterProgress;
   private TextView mFooterTextView;
   private RelativeLayout mFooterView;
@@ -42,7 +42,8 @@ public class ListingFragment extends Fragment
   
   @Override
   public void onCreate(Bundle savedInstanceState) {
-      super.onCreate(savedInstanceState);     
+      super.onCreate(savedInstanceState); 
+      this.mFilters = new Filters();
   }
   
   @Override

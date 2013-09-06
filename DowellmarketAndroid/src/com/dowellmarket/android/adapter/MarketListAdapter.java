@@ -17,8 +17,6 @@ import com.dowellmarket.android.model.Market;
 public class MarketListAdapter extends BaseAdapter
 {
   private final List<Market> markets;
- // private DisplayImageOptions mDisplayImageOptions;
-  private Filters mFilters = Filters.getInstance();
  // private ImageLoader mImageLoader;
   private final LayoutInflater mInflater;
 

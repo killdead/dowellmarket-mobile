@@ -7,7 +7,7 @@ public class SearchMarket extends Model
   public static final String EXTRA = "search";
   private List<Market> result;
   private int total;
-
+ 
   public static SearchMarket fromString(String paramString)
   {
     return (SearchMarket)Model.fromString(paramString, SearchMarket.class);
